@@ -1,9 +1,9 @@
 from flask import request, session, g, redirect, url_for, abort, render_template, flash
 from flask_login import login_required,login_user,logout_user,current_user
-from retrade import app
-from retrade.models import Trade,User
-from retrade.login import googlelogin
-from retrade.database import db
+from dmfg import app
+from dmfg.models import Trade,User
+from dmfg.login import googlelogin
+from dmfg.database import db
 
 @app.route('/')
 @app.route('/index')

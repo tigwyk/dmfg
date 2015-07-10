@@ -1,6 +1,6 @@
 from flask_googlelogin import GoogleLogin
-from retrade import app
-from retrade.models import User
+from dmfg import app
+from dmfg.models import User
 
 googlelogin = GoogleLogin(app)
 

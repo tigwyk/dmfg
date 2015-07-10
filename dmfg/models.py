@@ -1,4 +1,4 @@
-from retrade.database import db
+from dmfg.database import db
 import datetime
 import humanize
 from . import admin
