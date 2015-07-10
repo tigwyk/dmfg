@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Re:TRADE - Main{% endblock %}
+{% block title %}Main{% endblock %}
 {% block scripts %}
 <script src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
 {{super()}}
@@ -7,8 +7,8 @@
 {% block content %}
 <div class="jumbotron">
   <div class="container">
-  <h1>Welcome to Re:TRADE</h1>
-  <p>An item exchange for members of the Vancouver Resistance (Ingress)</p>
+  <h1>dmfg</h1>
+  <p>Testing</p>
   <p><a class="btn btn-primary btn-lg" role="button" href="{{ url_for('about_page') }}">Learn more</a>
   {% if not current_user.is_authenticated() %}<a class="btn btn-primary btn-lg" role="button" href="{{gauth_login_url}}">Login</a></p>{% endif %}
   </div>
