@@ -1,1 +1,1 @@
-web: gunicorn sheltered-taiga-4486:app --log-file - --debug
+web: gunicorn dmfg:app --log-file - --debug
