@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Re:TRADE - Trades{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="page-header">
+	<h1>Trade Listings <small>Items listed for trade by local players</small></h1>
+</div>
+<table class="table table-striped">
+<th>Item</th>
+<th>Quantity</th>
+<th>Agent</th>
+<th>Neighbourhood</th>
+<th>Date Created</th>
+{% for trade in my_trades | sort(reverse=True,attribute='created_date')%}
+  <tr>
+  <td>{{ trade.item.name }}</td>
+  <td>{{ trade.quantity }}</td>
+  <td>{{ trade.user.name }}</td>
+  <td>{{ trade.user.neighbourhoods | join(', ', attribute='name') }}</td>
+  <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}
+
+

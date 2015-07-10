@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %} Re:TRADE - Profile {% endblock %}
+{% block content %}
+  <div class="container">
+  <div class="page-header">
+        <h1>Profile <small>What makes you... you?</small></h1>
+  </div>
+
+  <div class="well">
+  <p>Agent Name: <b>{{ current_user.name }}</b></p>
+  <p>Neighbourhoods: {{ current_user.neighbourhoods | join(', ', attribute='name') }}</p>
+  <p><a class="btn btn-primary btn-lg" role="button" href="{{url_for('logout_page')}}">Logout</a></p>
+  </div>
+  </div>
+  {% endblock %}

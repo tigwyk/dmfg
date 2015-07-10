@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block title %}Re:TRADE - Main{% endblock %}
+{% block scripts %}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
+{{super()}}
+{% endblock %}
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+  <h1>Welcome to Re:TRADE</h1>
+  <p>An item exchange for members of the Vancouver Resistance (Ingress)</p>
+  <p><a class="btn btn-primary btn-lg" role="button" href="{{ url_for('about_page') }}">Learn more</a>
+  {% if not current_user.is_authenticated() %}<a class="btn btn-primary btn-lg" role="button" href="{{gauth_login_url}}">Login</a></p>{% endif %}
+  </div>
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Lorum Ipsum</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.<p>
+        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+      </div>
+    </div>
+</div>
+<div class="col-sm-6 col-md-4">
+<div class="thumbnail">
+      <img data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Lorum Ipsum</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.<p>
+        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+      </div>
+    </div>
+</div>
+<div class="col-sm-6 col-md-4">
+<div class="thumbnail">
+      <img data-src="holder.js/300x300" alt="...">
+      <div class="caption">
+        <h3>Lorum Ipsum</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.<p>
+        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+      </div>
+    </div>
+</div>
+  </div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+	<h3 class="panel-title">Site Completion</h3>
+	</div>
+<div class="panel-body">
+<div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuenow="13" aria-valuemax="100" style="width: 13%;">
+    13%
+ </div>
+ </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
