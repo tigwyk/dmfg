@@ -1,4 +1,3 @@
 from celery import Celery
-import os
 
-queue = Celery('tasks', broker=os.environ['REDIS_URL'])
+queue = Celery('tasks', broker=dmfg.config['CELERY_BROKER_URL'])

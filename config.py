@@ -7,7 +7,7 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'sdfns90dfm8904kljklklas9089s90903kljklsaldlklasdklqwopeudabfjzsklacje89903oklsjdqpfskldfjwlaxcjvxlcvxcv'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-    BROKER_URL = os.environ['REDIS_URL']
+    CELERY_BROKER_URL = os.environ['REDIS_URL']
     CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 
@@ -18,7 +18,7 @@ class ProductionConfig(Config):
     GOOGLE_LOGIN_REDIRECT_URI = 'http://sheltered-taiga-4486.herokuapp.com/oauth2callback'
     GOOGLE_LOGIN_CLIENT_SCOPES = 'https://www.googleapis.com/auth/plus.login'
     SERVER_NAME = 'sheltered-taiga-4486.herokuapp.com'
-    BROKER_URL = os.environ['REDIS_URL']
+    CELERY_BROKER_URL = os.environ['REDIS_URL']
     CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 
