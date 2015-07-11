@@ -14,3 +14,4 @@ Bootstrap(app)
 from . import views
 from . import models
 from . import login
+from . import tasks
