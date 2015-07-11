@@ -14,10 +14,16 @@ SQLAlchemy==0.9.7
 WTForms==2.0.1
 Werkzeug==0.9.6
 alembic==0.6.7
+amqp==1.4.6
+anyjson==0.3.3
 argparse==1.2.1
+billiard==3.3.0.20
+celery==3.1.18
 gunicorn==19.0.0
 humanize==0.5
 itsdangerous==0.24
+kombu==3.0.26
 psycopg2==2.5.4
+pytz==2015.4
 requests==0.14.2
 wsgiref==0.1.2
