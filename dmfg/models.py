@@ -72,11 +72,6 @@ class ManufactureJob(db.Model):
     def human_time(self):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
-#mfg_jobs = db.Table('ManufactureJobs',
-#                          db.Column('agent_id', db.Integer, db.ForeignKey('user.id')),
-#                          db.Column('job_id', db.Integer, db.ForeignKey('ManufactureJob.id'))
-#)
-
 class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
