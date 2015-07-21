@@ -60,4 +60,4 @@ def create_or_update_user(token, userinfo, **params):
     db.session.add(user)
     db.session.flush()
     login_user(user)
-    return redirect(url_for('index'))
+    return redirect(url_for('profile_page'))
