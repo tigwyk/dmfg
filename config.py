@@ -13,8 +13,8 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
-    GOOGLE_LOGIN_CLIENT_ID = '540878604386-k4bjmu9ih3t8oih8ej7215lf9sbs5qcj.apps.googleusercontent.com'
-    GOOGLE_LOGIN_CLIENT_SECRET = 'jsFoXb5KLYVQwrzxXcj09IDj'
+    GOOGLE_LOGIN_CLIENT_ID = '540878604386-elv8k445irmg21cppmj362c1i823ivns.apps.googleusercontent.com'
+    GOOGLE_LOGIN_CLIENT_SECRET = '3UqqXGVwi3DRTKVtAlyQuGTl'
     GOOGLE_LOGIN_REDIRECT_URI = 'http://sheltered-taiga-4486.herokuapp.com/oauth2callback'
     GOOGLE_LOGIN_CLIENT_SCOPES = 'https://www.googleapis.com/auth/plus.login'
     SERVER_NAME = 'sheltered-taiga-4486.herokuapp.com'
