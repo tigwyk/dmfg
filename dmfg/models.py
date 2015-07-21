@@ -16,7 +16,7 @@ class Item(db.Model):
         self.created_date = datetime.datetime.now()
 
     def __repr__(self):
-        return '<id %r name=%r>' % (self.id, self.name)
+        return '<item id %r name=%r>' % (self.id, self.name)
 
     @property
     def human_date(self):
@@ -39,7 +39,30 @@ class Trade(db.Model):
         self.created_date = datetime.datetime.now() 
 
     def __repr__(self):
-        return '<id %r>' % (self.id)
+        return '<trade id %r>' % (self.id)
+
+    @property
+    def human_date(self):
+        return humanize.naturaldate(self.created_date)
+
+    @property
+    def human_time(self):
+        return humanize.naturaltime(datetime.datetime.now()-self.created_date)
+    
+class ManufactureJob(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    created_date = db.Column(db.DateTime)
+    quantity = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
+
+    def __init__(self, name=""):
+        self.name = name
+        self.created_date = datetime.datetime.now() 
+
+    def __repr__(self):
+        return '<mfg id %r>' % (self.id)
 
     @property
     def human_date(self):
@@ -49,10 +72,10 @@ class Trade(db.Model):
     def human_time(self):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
-neighbourhoods = db.Table('neighbourhoods',
-                          db.Column('agent_id', db.Integer, db.ForeignKey('user.id')),
-                          db.Column('neighbourhood_id', db.Integer, db.ForeignKey('neighbourhood.id'))
-)
+#mfg_jobs = db.Table('ManufactureJobs',
+#                          db.Column('agent_id', db.Integer, db.ForeignKey('user.id')),
+#                          db.Column('job_id', db.Integer, db.ForeignKey('ManufactureJob.id'))
+#)
 
 class User(db.Model):
 
@@ -61,7 +84,8 @@ class User(db.Model):
     name = db.Column(db.String())
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="user")
-    neighbourhoods = db.relationship("Neighbourhood", secondary=neighbourhoods, backref="agents")
+    mfg_jobs = db.relationship("ManufactureJob", backref="creator")
+    #mfg_jobs = db.relationship("ManufactureJob", secondary=mfg_jobs, backref="creator")
 
     def __init__(self, name="",google_id=""):
         self.name = name
@@ -91,18 +115,7 @@ class User(db.Model):
     def human_time(self):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
-class Neighbourhood(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String())
-
-    def __init__(self, name=""):
-        self.name = name
-
-    def __repr__(self):
-        return '<id %r name=%r>' % (self.id, self.name)
-
 admin.register(User, session=db.session)
 admin.register(Item, session=db.session)
 admin.register(Trade, session=db.session)
-admin.register(Neighbourhood, session=db.session)
+admin.register(MaufactureJob, session=db.session)

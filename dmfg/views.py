@@ -34,6 +34,12 @@ def trade_page():
 	trades = Trade.query.all()
 	return render_template('trade.html', my_trades=trades)
 
+@app.route('/mfg')
+@login_required
+def mfg_page():
+	mfg = ManufactureJob.query.all()
+	return render_template('mfg.html', my_mfg=mfg)
+
 @app.route('/profile')
 @login_required
 def profile_page():
