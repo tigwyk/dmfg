@@ -8,7 +8,6 @@ logging.basicConfig(stream=sys.stderr)
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 
 app = Flask(__name__,template_folder=tmpl_dir)
-celery = make_celery(app)
 admin = Admin(app)
 Bootstrap(app)
 
@@ -16,3 +15,5 @@ from . import views
 from . import models
 from . import login
 from . import tasks
+
+celery = make_celery(app)
