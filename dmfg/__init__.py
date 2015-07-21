@@ -16,4 +16,4 @@ from . import models
 from . import login
 from . import tasks
 
-celery = make_celery(app)
+celery = tasks.make_celery(app)
