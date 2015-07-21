@@ -10,7 +10,7 @@
   <h1>dmfg</h1>
   <p>Testing</p>
   <p><a class="btn btn-primary btn-lg" role="button" href="{{ url_for('about_page') }}">Learn more</a>
-  {% if not current_user.is_authenticated() %}<a class="btn btn-primary btn-lg" role="button" href="{{gauth_login_url}}">Login</a></p>{% endif %}
+  {% if not current_user.is_authenticated() %}<a class="btn btn-primary btn-lg" role="button" href={{ url_for('oauth_authorize', provider='google') }}>Login</a></p>{% endif %}
   </div>
 </div>
 <div class="container">

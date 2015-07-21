@@ -77,15 +77,17 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     google_id = db.Column(db.String(), unique=True)
     name = db.Column(db.String())
+    email = db.Column(db.String())
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="user")
     mfg_jobs = db.relationship("ManufactureJob", backref="creator")
     #mfg_jobs = db.relationship("ManufactureJob", secondary=mfg_jobs, backref="creator")
 
-    def __init__(self, name="",google_id=""):
+    def __init__(self, name="",google_id="",email=""):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.google_id = google_id
+        self.email = email
 
     def __repr__(self):
         return '<id %r name=%r>' % (self.id, self.name)

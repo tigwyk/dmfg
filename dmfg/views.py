@@ -11,9 +11,12 @@ def index():
 	gauth_url = googlelogin.login_url(params=dict(next=url_for('profile_page')))
 	return render_template('index.html',gauth_login_url=gauth_url)
 
-@app.route('/login')
-def login_page():
-	return 'Login Page Placeholder'
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	if g.user is not None and g.user.is_authenticated():
+		return redirect(url_for('index'))
+	return render_template('login.html',
+	                       title='Sign In')
 
 @app.route('/logout')
 def logout_page():
@@ -46,18 +49,39 @@ def profile_page():
 	user = current_user
 	return render_template('profile.html', user=user)
 
-@app.route('/oauth2callback')
-@googlelogin.oauth2callback
-def create_or_update_user(token, userinfo, **params):
-    user = User.query.filter_by(google_id=userinfo['id']).first()
-    if user:
-        user.name = userinfo['name']
-        #user.avatar = userinfo['picture']
-    else:
-        user = User(google_id=userinfo['id'],
-                    name=userinfo['name']
-                    )
-    db.session.add(user)
-    db.session.flush()
-    login_user(user)
-    return redirect(url_for('profile_page'))
+@app.route('/authorize/<provider>')
+def oauth_authorize(provider):
+	# Flask-Login function
+	if not current_user.is_anonymous():
+		return redirect(url_for('index'))
+	oauth = OAuthSignIn.get_provider(provider)
+	return oauth.authorize()
+
+@app.route('/callback/<provider>')
+def oauth_callback(provider):
+	if not current_user.is_anonymous():
+		return redirect(url_for('index'))
+	oauth = OAuthSignIn.get_provider(provider)
+	username, email = oauth.callback()
+	if email is None:
+		# I need a valid email address for my user identification
+		flash('Authentication failed.')
+		return redirect(url_for('index'))
+	# Look if the user already exists
+	user=User.query.filter_by(email=email).first()
+	if not user:
+		# Create the user. Try and use their name returned by Google,
+		# but if it is not set, split the email address at the @.
+		nickname = username
+		if nickname is None or nickname == "":
+			nickname = email.split('@')[0]
+
+		# We can do more work here to ensure a unique nickname, if you 
+		# require that.
+		user=User(name=nickname, email=email)
+		db.session.add(user)
+		db.session.commit()
+	# Log in the user, by default remembering them for their next visit
+	# unless they log out.
+	login_user(user, remember=True)
+	return redirect(url_for('index'))

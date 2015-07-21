@@ -18,8 +18,14 @@ class ProductionConfig(Config):
     GOOGLE_LOGIN_REDIRECT_URI = 'http://sheltered-taiga-4486.herokuapp.com/oauth2callback'
     GOOGLE_LOGIN_CLIENT_SCOPES = 'https://www.googleapis.com/auth/plus.login'
     SERVER_NAME = 'sheltered-taiga-4486.herokuapp.com'
-    CELERY_BROKER_URL = os.environ['REDIS_URL']
-    CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+    OAUTH_CREDENTIALS={
+        'google': {
+            'id': GOOGLE_LOGIN_CLIENT_ID,
+            'secret': GOOGLE_LOGIN_CLIENT_SECRET
+        }
+    }    
+#    CELERY_BROKER_URL = os.environ['REDIS_URL']
+#    CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 
 class StagingConfig(Config):
