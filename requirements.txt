@@ -27,8 +27,3 @@ psycopg2==2.5.4
 pytz==2015.4
 rauth==0.7.1
 requests==2.7.0
-<<<<<<< HEAD
-wsgiref==0.1.2
-=======
-wsgiref==0.1.2
->>>>>>> d389a26bb843e8c0fd247e94bed309b4703f2f3b
