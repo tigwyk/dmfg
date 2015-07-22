@@ -55,13 +55,33 @@
 <div class="well">
 <h3>My Trades</h3>
 <table class="table table-striped">
+<h4>Buy Orders</h4>
 <th>Item</th>
 <th>Quantity</th>
 <th>Price Per Unit</th>
 <th>Total Price</th>
 <th>Order Type</th>
 <th>Date Created</th>
-{% for trade in my_trades | sort(reverse=True,attribute='created_date')%}
+{% for trade in my_buy | sort(reverse=True,attribute='created_date')%}
+  <tr>
+  <td>{{ trade.item.name }}</td>
+  <td>{{ trade.quantity }}</td>
+  <td>{{ trade.price }}</td>
+  <td>{{ trade.price * trade.quantity }}</td>
+  <td>{{ trade.order_type }}</td>
+  <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
+  </tr>
+  {% endfor %}
+</table>
+<table class="table table-striped">
+<h4>Sell Orders</h4>
+<th>Item</th>
+<th>Quantity</th>
+<th>Price Per Unit</th>
+<th>Total Price</th>
+<th>Order Type</th>
+<th>Date Created</th>
+{% for trade in my_sell | sort(reverse=True,attribute='created_date')%}
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>
