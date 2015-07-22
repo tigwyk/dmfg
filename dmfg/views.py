@@ -34,7 +34,8 @@ def help_page():
 @login_required
 def trade_page():
 	trades = Trade.query.all()
-	return render_template('trade.html', my_trades=trades)
+	my_trades = Trade.query.filter_by(user=current_user)
+	return render_template('trade.html', all_trades=trades, my_trades=my_trades)
 
 @app.route('/mfg')
 @login_required
