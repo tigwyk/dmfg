@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import JSON
 import datetime
 import humanize
 from . import admin
-from Flask import jsonify
+from flask import jsonify
 
 class Item(db.Model):
 
