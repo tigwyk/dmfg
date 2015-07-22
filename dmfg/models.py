@@ -1,9 +1,7 @@
 from dmfg.database import db
-from sqlalchemy.dialects.postgresql import JSON
 import datetime
 import humanize
 from . import admin
-from flask import jsonify
 
 class Item(db.Model):
 
@@ -82,13 +80,14 @@ class User(db.Model):
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="user")
     mfg_jobs = db.relationship("ManufactureJob", backref="user")
-    items_owned = db.Column(JSON)
+    items_owned = db.Column(db.PickleType)
 
-    def __init__(self, name="",email=""):
+    def __init__(self, name="",email="",items_owned=dict()):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
-        self.items_owned = jsonify(**dict())
+        self.items_owned = items_owned
+
 
     def __repr__(self):
         return '<user id %r name=%r>' % (self.id, self.name)
