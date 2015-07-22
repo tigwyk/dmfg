@@ -88,7 +88,7 @@ class User(db.Model):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
-        self.items_owned = json.dumps(items_owned)
+        self.items_owned = items_owned
 
 
     def __repr__(self):
@@ -113,7 +113,7 @@ class User(db.Model):
             return False
 
     def get_items_owned(self):
-        return json.loads(self.items_owned).viewitems() or False
+        return self.items_owned.viewitems() or False
 
     def add_item(self, item_id, qty):
         if item_id in self.items_owned:
