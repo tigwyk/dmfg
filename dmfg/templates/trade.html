@@ -7,15 +7,35 @@
 	<h1>Trade Listings <small>Items listed for trade by local players</small></h1>
 </div>
 <p><a class="btn btn-primary btn-lg" role="button" href="javascript:void(0);">Create trade</a></p>
-<table class="table table-striped">
 <h3>All Trades</h3>
+<h4>Buy Orders</h4>
+<table class="table table-striped">
 <th>Item</th>
 <th>Quantity</th>
 <th>Price</th>
 <th>Order Type</th>
 <th>Trading Agent</th>
 <th>Date Created</th>
-{% for trade in all_trades | sort(reverse=True,attribute='created_date')%}
+{% for trade in buy_orders | sort(reverse=True,attribute='created_date')%}
+  <tr>
+  <td>{{ trade.item.name }}</td>
+  <td>{{ trade.quantity }}</td>
+  <td>{{ trade.price }}</td>
+  <td>{{ trade.order_type }}</td>
+  <td>{{ trade.user.name }}</td>
+  <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
+  </tr>
+  {% endfor %}
+</table>
+<h4>Sell Orders</h4>
+<table class="table table-striped">
+<th>Item</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Order Type</th>
+<th>Trading Agent</th>
+<th>Date Created</th>
+{% for trade in sell_orders | sort(reverse=True,attribute='created_date')%}
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>

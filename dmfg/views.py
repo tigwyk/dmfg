@@ -33,9 +33,10 @@ def help_page():
 @app.route('/trade')
 @login_required
 def trade_page():
-	trades = Trade.query.all()
+	buy_orders = Trade.query.filter_by(order_type="B")
+	sell_orders = Trade.query.filter_by(order_type="S")
 	my_trades = Trade.query.filter_by(user=current_user)
-	return render_template('trade.html', all_trades=trades, my_trades=my_trades)
+	return render_template('trade.html', buy_orders=buy_orders,sell_orders=sell_orders, my_trades=my_trades)
 
 @app.route('/mfg')
 @login_required
