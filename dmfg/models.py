@@ -108,7 +108,7 @@ class User(db.Model):
     
     def get_owned_item(self, item_id):
         if str(item_id) in self.get_items_owned().viewkeys():
-            return (item_id, self.get_items_owned().get(str(item_id))
+            return (item_id, self.get_items_owned().get(str(item_id)))
         else:
             return False
 
