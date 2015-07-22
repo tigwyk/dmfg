@@ -1,15 +1,13 @@
 from flask import request, session, g, redirect, url_for, abort, render_template, flash
 from flask_login import login_required,login_user,logout_user,current_user
 from dmfg import app
-from dmfg.models import Trade,User
-from dmfg.login import googlelogin
+from dmfg.models import Trade,User,ManufactureJob
 from dmfg.database import db
 
 @app.route('/')
 @app.route('/index')
 def index():
-	gauth_url = googlelogin.login_url(params=dict(next=url_for('profile_page')))
-	return render_template('index.html',gauth_login_url=gauth_url)
+	return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
