@@ -88,7 +88,7 @@ class User(db.Model):
         self.created_date = datetime.datetime.now()
         self.email = email
         self.items_owned = items_owned
-        foreach item in Item.query.all()
+        for item in Item.query.all()
             self.items_owned[item.id] = 0
 
     def __repr__(self):
