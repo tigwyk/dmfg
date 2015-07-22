@@ -109,15 +109,13 @@ class User(db.Model):
 
     def add_item(self, item_id, qty):
         if item_id in self.items_owned:
-            return (self.items_owned[item_id] = self.items_owned[item_id] + qty)
+            self.items_owned[item_id] = self.items_owned[item_id] + qty
         else:
-            return (self.items_owned[item_id] = qty)
+            self.items_owned[item_id] = qty
         
     def remove_item(self, item_id, qty):
         if (item_id in self.items_owned) && ((self.items_owned[item_id]-qty)>0):
-            return (self.items_owned[item_id] = self.items_owned[item_id] - qty)
-        else:
-            return
+            self.items_owned[item_id] = self.items_owned[item_id] - qty
 
     @property
     def human_date(self):
