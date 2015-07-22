@@ -10,6 +10,7 @@ class Item(db.Model):
     name = db.Column(db.String())
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="item")
+    mfg_jobs = db.relationship("ManufactureJob", backref="item")
 
     def __init__(self, name=""):
         self.name = name
