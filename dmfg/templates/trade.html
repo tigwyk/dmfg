@@ -11,8 +11,7 @@
 <h3>All Trades</h3>
 <th>Item</th>
 <th>Quantity</th>
-<th>Ask Price</th>
-<th>Bid Price</th>
+<th>Price</th>
 <th>Order Type</th>
 <th>Trading Agent</th>
 <th>Date Created</th>
@@ -20,9 +19,8 @@
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>
-  <td>$700</td>
-  <td>$600</td>
-  <td>Sell</td>
+  <td>{{ trade.price }}</td>
+  <td>{{ trade.order_type }}</td>
   <td>{{ trade.user.name }}</td>
   <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
   </tr>
@@ -32,17 +30,15 @@
 <h3>My Trades</h3>
 <th>Item</th>
 <th>Quantity</th>
-<th>Ask Price</th>
-<th>Bid Price</th>
+<th>Price/th>
 <th>Order Type</th>
 <th>Date Created</th>
 {% for trade in my_trades | sort(reverse=True,attribute='created_date')%}
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>
-  <td>$700</td>
-  <td>$600</td>
-  <td>Sell</td>
+  <td>{{ trade.price }}</td>
+  <td>{{ trade.order_type }}</td>
   <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
   </tr>
   {% endfor %}

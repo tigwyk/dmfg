@@ -33,11 +33,15 @@ class Trade(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_date = db.Column(db.DateTime)
     quantity = db.Column(db.Integer)
+    price = db.Column(db.Float)
+    order_type = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
 
-    def __init__(self, name=""):
-        self.name = name
+    def __init__(self, quantity=0,price=0,order_type=""):
+        self.quantity = quantity
+        self.price = price
+        self.order_type = order_type
         self.created_date = datetime.datetime.now() 
 
     def __repr__(self):
