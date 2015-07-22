@@ -107,8 +107,8 @@ class User(db.Model):
         return unicode(str(self.id))
     
     def get_owned_item(self, item_id):
-        if item_id in self.get_items_owned():
-            return (item_id, self.get_items_owned().get(item_id))
+        if str(item_id) in self.get_items_owned().viewkeys():
+            return (item_id, self.get_items_owned().get(str(item_id))
         else:
             return False
 
@@ -116,10 +116,12 @@ class User(db.Model):
         return json.loads(self.items_owned)
 
     def add_item(self, item_id, qty):
-        if item_id in self.get_items_owned().viewkeys():
-            self.get_items_owned()[item_id] = self.get_items_owned()[item_id] + qty
+        items_dict = self.get_items_owned()
+        if str(item_id) in items_dict.viewkeys():
+            items_dict[str(item_id)] = items_dict[str(item_id)] + qty
         else:
-            self.get_items_owned()[item_id] = qty
+            items_dict[str(item_id)] = qty
+        self.items_owned = items_dict
         db.session.add(self)
         db.session.commit()
         
