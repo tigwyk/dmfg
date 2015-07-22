@@ -49,7 +49,7 @@ def profile_page():
 	items_temp = current_user.get_items_owned()
 	items_table = [[]]
 	for item in item_temp.viewkeys():
-		items_table.append([Item.query.get(int(item_id),qty,"javascript();"])
+		items_table.append([Item.query.get(int(item_id)),qty,"javascript();"])
 	return render_template('profile.html', item_table=item_table)
 
 @app.route('/authorize/<provider>')
