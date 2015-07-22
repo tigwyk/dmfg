@@ -1,6 +1,8 @@
 from dmfg.database import db
+from sqlalchemy.dialects.postgresql import JSON
 import datetime
 import humanize
+import json
 from . import admin
 
 class Item(db.Model):
@@ -80,13 +82,13 @@ class User(db.Model):
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="user")
     mfg_jobs = db.relationship("ManufactureJob", backref="user")
-    items_owned = db.Column(db.PickleType)
+    items_owned = db.Column(JSON)
 
     def __init__(self, name="",email="",items_owned={}):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
-        self.items_owned = items_owned
+        self.items_owned = json.dumps(items_owned)
 
 
     def __repr__(self):
@@ -111,7 +113,7 @@ class User(db.Model):
             return False
 
     def get_items_owned(self):
-        return self.items_owned.viewitems()
+        return json.loads(self.items_owned).viewitems()
 
     def add_item(self, item_id, qty):
         if item_id in self.items_owned:
