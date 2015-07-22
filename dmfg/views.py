@@ -39,8 +39,9 @@ def trade_page():
 @app.route('/mfg')
 @login_required
 def mfg_page():
-	mfg = ManufactureJob.query.all()
-	return render_template('mfg.html', my_mfg=mfg)
+	all_mfg = ManufactureJob.query.all()
+	my_mfg = ManufactureJob.query.filter_by(user=current_user).first()
+	return render_template('mfg.html', all_mfg=all_mfg, my_mfg=my_mfg)
 
 @app.route('/profile')
 @login_required
