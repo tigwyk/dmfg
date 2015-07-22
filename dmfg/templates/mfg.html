@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Manufacturing Jobs{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="page-header">
+	<h1>Manufacturing Job Listings <small>Items being manufactured by players</small></h1>
+</div>
+<table class="table table-striped">
+<th>Item</th>
+<th>Quantity</th>
+<th>Creator</th>
+<th>Date Created</th>
+{% for job in my_mfg | sort(reverse=True,attribute='created_date')%}
+  <tr>
+  <td>{{ job.item.name }}</td>
+  <td>{{ job.quantity }}</td>
+  <td>{{ job.user.name }}</td>
+  <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}
+
+
