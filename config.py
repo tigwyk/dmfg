@@ -5,7 +5,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'sdfns90dfm8904kljklklas9089s90903kljklsaldlklasdklqwopeudabfjzsklacje89903oklsjdqpfskldfjwlaxcjvxlcvxcv'
+    SECRET_KEY = os.environ['PYTHON_SECRET_KEY']
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
     CELERY_BROKER_URL = os.environ['REDIS_URL']
     CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
@@ -13,10 +13,10 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
-    GOOGLE_LOGIN_CLIENT_ID = '532557088815-8ak75vub4oq6fd36q4198a9rce6eeeui.apps.googleusercontent.com'
-    GOOGLE_LOGIN_CLIENT_SECRET = 'ha1NTfZ7fZYDculqzl2-gr37'
-    GOOGLE_LOGIN_REDIRECT_URI = 'http://sheltered-taiga-4486.herokuapp.com/callback/google'
-    GOOGLE_LOGIN_CLIENT_SCOPES = 'https://www.googleapis.com/auth/plus.login'
+    GOOGLE_LOGIN_CLIENT_ID = os.environ['GOOGLE_LOGIN_CLIENT_ID']
+    GOOGLE_LOGIN_CLIENT_SECRET = os.environ['GOOGLE_LOGIN_CLIENT_SECRET']
+    GOOGLE_LOGIN_REDIRECT_URI =  os.environ['GOOGLE_LOGIN_CLIENT_REDIRECT_URI']
+    GOOGLE_LOGIN_CLIENT_SCOPES =  os.environ['GOOGLE_LOGIN_CLIENT_SCOPES']
     SERVER_NAME = 'sheltered-taiga-4486.herokuapp.com'
     OAUTH_CREDENTIALS={
         'google': {
