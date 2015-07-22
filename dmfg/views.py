@@ -3,6 +3,7 @@ from flask.ext.login import login_required,login_user,logout_user,current_user
 from dmfg import app
 from dmfg.models import Trade,User,ManufactureJob
 from dmfg.database import db
+from dmfg.auth import OAuthSignIn
 
 @app.route('/')
 @app.route('/index')
