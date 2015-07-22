@@ -12,6 +12,7 @@ admin = Admin(app)
 Bootstrap(app)
 
 from . import views
+from . import login
 from . import models
 from . import tasks
 from . import auth

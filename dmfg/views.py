@@ -1,5 +1,5 @@
 from flask import request, session, g, redirect, url_for, abort, render_template, flash
-from flask_login import login_required,login_user,logout_user,current_user
+from flask.ext.login import login_required,login_user,logout_user,current_user
 from dmfg import app
 from dmfg.models import Trade,User,ManufactureJob
 from dmfg.database import db
@@ -11,7 +11,7 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	if g.user is not None and g.user.is_authenticated():
+	if current_user is not None and current_user.is_authenticated():
 		return redirect(url_for('index'))
 	return render_template('login.html',
 	                       title='Sign In')
