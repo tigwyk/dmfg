@@ -40,7 +40,7 @@ def trade_page():
 @login_required
 def mfg_page():
 	all_mfg = ManufactureJob.query.all()
-	my_mfg = ManufactureJob.query.filter_by(user=current_user).first()
+	my_mfg = ManufactureJob.query.filter_by(user=current_user)
 	return render_template('mfg.html', all_mfg=all_mfg, my_mfg=my_mfg)
 
 @app.route('/profile')
