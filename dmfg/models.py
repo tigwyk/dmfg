@@ -83,7 +83,7 @@ class User(db.Model):
     mfg_jobs = db.relationship("ManufactureJob", backref="user")
     items_owned = db.Column(db.String())
 
-    def __init__(self, name="",email="",items_owned={"":""}):
+    def __init__(self, name="",email="",items_owned={}):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
