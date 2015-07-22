@@ -48,9 +48,9 @@ def mfg_page():
 def profile_page():
 	items_temp = current_user.get_items_owned()
 	items_table = [[]]
-	for item in item_temp.viewkeys():
+	for item in items_temp.viewkeys():
 		items_table.append([Item.query.get(int(item_id)),qty,"javascript();"])
-	return render_template('profile.html', item_table=item_table)
+	return render_template('profile.html', items_table=items_table)
 
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
