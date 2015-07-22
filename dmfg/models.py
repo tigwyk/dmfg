@@ -111,7 +111,7 @@ class User(db.Model):
             return False
 
     def get_items_owned(self):
-        return self.items_owned.items()
+        return self.items_owned.viewitems()
 
     def add_item(self, item_id, qty):
         if item_id in self.items_owned:

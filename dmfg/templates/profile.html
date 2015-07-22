@@ -11,5 +11,16 @@
   <p>Email: {{current_user.email}}</p>
   <p><a class="btn btn-primary btn-lg" role="button" href="{{url_for('logout_page')}}">Logout</a></p>
   </div>
+  <table class="table table-striped">
+<h3>In Your Possession</h3>
+<th>Name</th>
+<th>Quantity</th>
+{% for owned_item,qty in owned_items | sort(reverse=True,attribute='name')%}
+  <tr>
+  <td>{{ owned_item.name }}</td>
+  <td>{{ qty }}</td>
+  </tr>
+  {% endfor %}
+</table>
   </div>
   {% endblock %}

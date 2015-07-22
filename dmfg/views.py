@@ -48,7 +48,10 @@ def mfg_page():
 def profile_page():
 	user = current_user
 	owned_items = user.get_items_owned()
-	return render_template('profile.html', user=user,owned_items=owned_items)
+	ref_items = []
+	for item_id,qty in owned_items:
+		ref_items.append([Item.query.get(item_id),qty])
+	return render_template('profile.html', user=user,owned_items=ref_items)
 
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
