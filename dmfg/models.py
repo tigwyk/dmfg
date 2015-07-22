@@ -128,9 +128,9 @@ class User(db.Model):
         
     def remove_item(self, item_id, qty):
         items_dict = self.get_items_owned()
-        if (str(item_id) in items_dict.viewkeys()) and ((item_dict.get(str(item_id))-qty)>=0):
-            item_dict[item_id] = item_dict.get(item_id) - qty
-            self.items_owned = item_dict
+        if (str(item_id) in items_dict.viewkeys()) and ((items_dict.get(str(item_id))-qty)>=0):
+            items_dict[item_id] = items_dict.get(item_id) - qty
+            self.items_owned = items_dict
             db.session.add(self)
             db.session.commit()
             return True
