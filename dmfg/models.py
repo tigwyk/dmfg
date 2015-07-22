@@ -114,7 +114,7 @@ class User(db.Model):
             self.items_owned[item_id] = qty
         
     def remove_item(self, item_id, qty):
-        if (item_id in self.items_owned) && ((self.items_owned[item_id]-qty)>0):
+        if (item_id in self.items_owned) and ((self.items_owned[item_id]-qty)>0):
             self.items_owned[item_id] = self.items_owned[item_id] - qty
 
     @property
