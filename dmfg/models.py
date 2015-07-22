@@ -88,8 +88,6 @@ class User(db.Model):
         self.created_date = datetime.datetime.now()
         self.email = email
         self.items_owned = items_owned
-        for item in Item.query.all()
-            self.items_owned[item.id] = 0
 
     def __repr__(self):
         return '<user id %r name=%r>' % (self.id, self.name)
@@ -107,7 +105,7 @@ class User(db.Model):
         return unicode(str(self.id))
 
     def get_items_owned(self):
-        return self.items_owned
+        return self.items_owned.items()
 
     def add_item(self, item_id, qty):
         if self.items_owned.has_key(item_id)
