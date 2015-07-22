@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import JSON
 import datetime
 import humanize
 from . import admin
-
+from Flask import jsonify
 
 class Item(db.Model):
 
@@ -88,7 +88,7 @@ class User(db.Model):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
-        self.items_owned = flask.jsonify(**dict())
+        self.items_owned = jsonify(**dict())
 
     def __repr__(self):
         return '<user id %r name=%r>' % (self.id, self.name)
