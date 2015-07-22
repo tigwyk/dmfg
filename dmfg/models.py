@@ -80,7 +80,7 @@ class User(db.Model):
     email = db.Column(db.String())
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="user")
-    mfg_jobs = db.relationship("ManufactureJob", backref="creator")
+    mfg_jobs = db.relationship("ManufactureJob", backref="user")
 
     def __init__(self, name="",email=""):
         self.name = name
