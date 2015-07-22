@@ -47,7 +47,8 @@ def mfg_page():
 @login_required
 def profile_page():
 	user = current_user
-	return render_template('profile.html', user=user)
+	owned_items = user.get_items_owned()
+	return render_template('profile.html', user=user,owned_items=owned_items)
 
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
