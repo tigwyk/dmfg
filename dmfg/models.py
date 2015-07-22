@@ -84,7 +84,7 @@ class User(db.Model):
     mfg_jobs = db.relationship("ManufactureJob", backref="user")
     items_owned = db.Column(JSON)
 
-    def __init__(self, name="",email="",items_owned={}):
+    def __init__(self, name="",email="",items_owned=dict()):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
@@ -113,17 +113,18 @@ class User(db.Model):
             return False
 
     def get_items_owned(self):
-        return json.loads(self.items_owned).viewitems()
+        return json.loads(self.items_owned).viewitems() or False
 
     def add_item(self, item_id, qty):
         if item_id in self.items_owned:
-            self.items_owned[item_id] = self.items_owned[item_id] + qty
+            self.items_owned[item_id] = self.items_owned.get(item_id) + qty
         else:
             self.items_owned[item_id] = qty
         
     def remove_item(self, item_id, qty):
-        if (item_id in self.items_owned) and ((self.items_owned[item_id]-qty)>0):
-            self.items_owned[item_id] = self.items_owned[item_id] - qty
+        if (item_id in self.items_owned) and ((self.items_owned.get(item_id)-qty)>=0):
+            self.items_owned[item_id] = self.items_owned.get(item_id) - qty
+            return True
         else:
             return False
         
