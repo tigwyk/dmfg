@@ -15,7 +15,7 @@
 <h3>My Possessions</h3>
 <th>Item</th>
 <th>Quantity</th>
-{% for item,qty,link in items_table | sort(reverse=True,attribute='name')%}
+{% for item,qty,link in items_table %}
   <tr>
   <td><a href={{ link }}>{{ item.name }}</a></td>
   <td>{{ qty }}</td>
