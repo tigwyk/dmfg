@@ -46,12 +46,11 @@ def mfg_page():
 @app.route('/profile')
 @login_required
 def profile_page():
-	#owned_items = user.get_items_owned()
-	#ref_items = []
-	#for item_id,qty in owned_items:
-	#	ref_items.append([Item.query.get(item_id),qty])
-	#return render_template('profile.html', user=user,owned_items=ref_items)
-	return render_template('profile.html')
+	items_temp = current_user.get_items_owned()
+	items_table = [[]]
+	for item in item_temp.viewkeys():
+		items_table.append([Item.query.get(int(item_id),qty,"javascript();"])
+	return render_template('profile.html', item_table=item_table)
 
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
