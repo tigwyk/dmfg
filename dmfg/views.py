@@ -47,7 +47,7 @@ def mfg_page():
 @login_required
 def profile_page():
 	items_temp = current_user.get_items_owned()
-	items_table = [[]]
+	items_table = []
 	for item in items_temp.viewkeys():
 		items_table.append([Item.query.get(int(item)),items_temp.get(item),"javascript();"])
 	return render_template('profile.html', items_table=items_table)
