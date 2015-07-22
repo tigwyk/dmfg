@@ -107,8 +107,8 @@ class User(db.Model):
         return unicode(str(self.id))
     
     def get_owned_item(self, item_id):
-        if item_id in get_items_owned():
-            return (item_id, self.items_owned[item_id])
+        if item_id in self.get_items_owned():
+            return (item_id, self.get_items_owned().get(item_id))
         else:
             return False
 
@@ -116,16 +116,16 @@ class User(db.Model):
         return json.loads(self.items_owned)
 
     def add_item(self, item_id, qty):
-        if item_id in get_items_owned().viewkeys():
-            get_items_owned()[item_id] = get_items_owned()[item_id] + qty
+        if item_id in self.get_items_owned().viewkeys():
+            self.get_items_owned()[item_id] = self.get_items_owned()[item_id] + qty
         else:
-            get_items_owned()[item_id] = qty
+            self.get_items_owned()[item_id] = qty
         db.session.add(self)
         db.session.commit()
         
     def remove_item(self, item_id, qty):
-        if (item_id in self.items_owned) and ((self.items_owned.get(item_id)-qty)>=0):
-            self.items_owned[item_id] = self.items_owned.get(item_id) - qty
+        if (item_id in self.get_items_owned().viewkeys()) and ((self.get_items_owned()[item_id]-qty)>=0):
+            self.get_items_owned()[item_id] = self.get_items_owned()[item_id] - qty
             return True
         else:
             return False
