@@ -83,7 +83,7 @@ class User(db.Model):
     mfg_jobs = db.relationship("ManufactureJob", backref="user")
     items_owned = db.Column(db.String())
 
-    def __init__(self, name="",email="",items_owned={}):
+    def __init__(self, name="",email="",items_owned=dict()):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
@@ -103,6 +103,12 @@ class User(db.Model):
 
     def get_id(self):
         return unicode(str(self.id))
+    
+    def get_owned_item(self, item_id):
+        if item_id in self.items_owned:
+            return (item_id, self.items_owned[item_id])
+        else:
+            return False
 
     def get_items_owned(self):
         return self.items_owned.items()
@@ -116,7 +122,9 @@ class User(db.Model):
     def remove_item(self, item_id, qty):
         if (item_id in self.items_owned) and ((self.items_owned[item_id]-qty)>0):
             self.items_owned[item_id] = self.items_owned[item_id] - qty
-
+        else:
+            return False
+        
     @property
     def human_date(self):
         return humanize.naturaldate(self.created_date)
