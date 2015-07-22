@@ -49,7 +49,7 @@ class Trade(db.Model):
     @property
     def human_time(self):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
-    
+
 class ManufactureJob(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -81,14 +81,16 @@ class User(db.Model):
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="user")
     mfg_jobs = db.relationship("ManufactureJob", backref="user")
+    items_owned = db.Column(db.String())
 
-    def __init__(self, name="",email=""):
+    def __init__(self, name="",email="",items_owned={}):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
+        self.items_owned = items_owned
 
     def __repr__(self):
-        return '<id %r name=%r>' % (self.id, self.name)
+        return '<user id %r name=%r>' % (self.id, self.name)
 
     def is_active(self):
         return True
@@ -101,6 +103,21 @@ class User(db.Model):
 
     def get_id(self):
         return unicode(str(self.id))
+
+    def get_items_owned(self):
+        return self.items_owned
+
+    def add_item(self, item_id, qty):
+        if self.items_owned.has_key(item_id)
+            return (self.items_owned[item_id] = self.items_owned[item_id] + qty)
+        else
+            return (self.items_owned[item_id] = qty)
+        
+    def remove_item(self, item_id, qty):
+        if self.items_owned.has_key(item_id) && ((self.items_owned[item_id]-qty)>0)
+            return (self.items_owned[item_id] = self.items_owned[item_id] - qty)
+        else
+            return
 
     @property
     def human_date(self):
