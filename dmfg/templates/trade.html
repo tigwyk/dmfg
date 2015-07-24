@@ -22,8 +22,8 @@
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>
-  <td>{{ trade.price }}</td>
-  <td>{{ trade.price * trade.quantity }}</td>
+  <td>{{ "$%.2f" % trade.price }}</td>
+  <td>{{ "$%.2f" % trade.price * trade.quantity }}</td>
   <td>{{ trade.order_type }}</td>
   <td>{{ trade.user.name }}</td>
   <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
@@ -43,8 +43,8 @@
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>
-  <td>{{ trade.price|float }}</td>
-  <td>{{ trade.price * trade.quantity | float}}</td>
+  <td>{{ "$%.2f" % trade.price|float }}</td>
+  <td>{{ "$%.2f" % trade.price * trade.quantity | float}}</td>
   <td>{{ trade.order_type }}</td>
   <td>{{ trade.user.name }}</td>
   <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
@@ -66,8 +66,8 @@
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>
-  <td>{{ trade.price|float}}</td>
-  <td>{{ trade.price * trade.quantity | float}}</td>
+  <td>{{ "$%.2f" % trade.price|float}}</td>
+  <td>{{ "$%.2f" % trade.price * trade.quantity | float}}</td>
   <td>{{ trade.order_type }}</td>
   <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
   </tr>
@@ -85,8 +85,8 @@
   <tr>
   <td>{{ trade.item.name }}</td>
   <td>{{ trade.quantity }}</td>
-  <td>{{ trade.price }}</td>
-  <td>{{ trade.price * trade.quantity }}</td>
+  <td>{{ "$%.2f" % trade.price }}</td>
+  <td>{{ "$%.2f" % trade.price * trade.quantity }}</td>
   <td>{{ trade.order_type }}</td>
   <td>{{trade.human_date}} <small>({{trade.human_time}})</small></td>
   </tr>
