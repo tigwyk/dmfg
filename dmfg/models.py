@@ -34,7 +34,7 @@ class Factory(Item):
     capacity = db.Column(db.Integer)
     current_job = db.relationship("ManufactureJob",uselist=False,backref="factory")
     
-    def __init__(self, capacity=0, current_job=None):
+    def __init__(self, capacity=0, current_job):
         self.capacity = capacity
         self.current_job = current_job
 
