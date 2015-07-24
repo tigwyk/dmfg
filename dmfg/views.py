@@ -50,9 +50,8 @@ def create_trade_page(id):
 		db.session.add(trade)
 		db.session.commit()
 		flash(u'New trade was successfully submitted!','success')
-		#submit_event(type='Added Ticket',title='Ticket Added',body=current_user.realname+" added ticket #"+str(ticket.number)+".", user_id=current_user.id)
 		return redirect(url_for('trade_page'))
-	#flash_errors(form)
+	flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
 	
 
