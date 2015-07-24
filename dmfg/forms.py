@@ -44,8 +44,8 @@ def user_list():
 class CreateTradeForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
     price = IntegerField('Price', [validators.Required()] )
-    item = QuerySelectField(query_factory=item_list, allow_blank=False)
-    user = QuerySelectField(query_factory=user_list, allow_blank=False)
+    item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
+    user = QuerySelectField(query_factory=user_list, get_label='name', allow_blank=False)
 
 #class GiftMoneyForm(Form):
     #recipient = TextField('To', [validators.Length(min=4)])
