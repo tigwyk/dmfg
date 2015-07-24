@@ -8,7 +8,7 @@ from wtforms import TextField, BooleanField, PasswordField, validators, TextArea
 from wtforms.validators import Required
 from wtforms.ext.sqlalchemy.orm import model_form
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from .models import Trade
+from .models import Trade,User,Item
 
 #class LoginForm(Form):
     #email = TextField('Email Address', [validators.Required()])
