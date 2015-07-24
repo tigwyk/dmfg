@@ -172,4 +172,5 @@ class User(db.Model):
 admin.register(User, session=db.session)
 admin.register(Item, session=db.session)
 admin.register(Trade, session=db.session)
+admin.register(Factory, session=db.session)
 admin.register(ManufactureJob, session=db.session)
