@@ -54,7 +54,7 @@ def create_trade_page():
 	#flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
 	
-@app.route('/create/trade', methods=['POST', 'GET'])
+@app.route('/create/mfg', methods=['POST', 'GET'])
 @login_required
 def create_mfg_page():
 	form = CreateMfgForm(request.form, Trade)
