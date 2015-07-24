@@ -46,7 +46,7 @@ def trade_page():
 @app.route('/create/trade', methods=['POST', 'GET'])
 @login_required
 def create_trade_page():
-	TradeForm = model_form(Form, Trade)
+	TradeForm = model_form(Trade, Form)
 	form = TradeForm(request.form, Trade)
 	if form.validate_on_submit():
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.now(),item=form.item.data,user=form.user.data,order_type=form.order_type.data)
