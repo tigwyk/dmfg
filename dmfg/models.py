@@ -10,9 +10,9 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     created_date = db.Column(db.DateTime)
-    trades = db.relationship("Trade", backref="item")
-    mfg_jobs = db.relationship("ManufactureJob", backref="item")
-    distributors = db.relationship("Distributor", backref="product")
+    trades = db.relationship("Trade", backref="item",lazy="dynamic")
+    mfg_jobs = db.relationship("ManufactureJob", backref="item",lazy="dynamic")
+    distributors = db.relationship("Distributor", backref="product", lazy="dynamic")
 
     def __init__(self, name=""):
         self.name = name
@@ -34,7 +34,7 @@ class Factory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     capacity = db.Column(db.Integer)
-    current_job = db.relationship("ManufactureJob", backref="factory")
+    current_job = db.relationship("ManufactureJob", backref="factory",lazy="dynamic")
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     
     def __init__(self, name=None, capacity=0, owner=None):
