@@ -7,6 +7,7 @@ from flask.ext.wtf import Form
 from wtforms import TextField, BooleanField, PasswordField, validators, TextAreaField, IntegerField
 from wtforms.validators import Required
 from wtforms.ext.sqlalchemy.orm import model_form
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from .models import Trade
 
 #class LoginForm(Form):
