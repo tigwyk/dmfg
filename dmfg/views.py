@@ -60,7 +60,7 @@ def create_trade_page():
 @login_required
 def create_mfg_page():
 	form = CreateMfgForm(request.form)
-	form.factory = Factory.query.filter_by(owner=current_user)
+	form.factory.query = Factory.query.filter_by(owner=current_user)
 	if form.validate_on_submit():
 		mfg = ManufactureJob(quantity=form.quantity.data, item=form.item.data,user=current_user)
 		db.session.add(mfg)
