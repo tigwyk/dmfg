@@ -1,4 +1,5 @@
 from celery import Celery
+from .models import Trade
 
 def make_celery(app):
     celery = Celery(app.import_name, broker=app.config['CELERY_BROKER_URL'])
@@ -11,3 +12,7 @@ def make_celery(app):
                 return TaskBase.__call__(self, *args, **kwargs)
     celery.Task = ContextTask
     return celery
+
+def process_open_trades():
+    buys = Trade.query.filter_by(order_type='B')
+    sells = Trade.query.filter_by(order_type='S')

@@ -5,7 +5,8 @@ from dmfg import app
 from dmfg.models import Trade,User,ManufactureJob,Item
 from dmfg.database import db
 from dmfg.auth import OAuthSignIn
-from dmfg.forms import CreateTradeForm,CreateMfgForm
+from .forms import CreateTradeForm,CreateMfgForm
+from dmfg import tasks
 
 @app.route('/')
 @app.route('/index')
@@ -50,6 +51,7 @@ def create_trade_page():
 		db.session.add(trade)
 		db.session.commit()
 		flash(u'New trade was successfully submitted!','success')
+		tasks.process_open_trades()
 		return redirect(url_for('trade_page'))
 	#flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
