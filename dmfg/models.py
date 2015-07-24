@@ -11,7 +11,7 @@ class Item(db.Model):
     name = db.Column(db.String())
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="item",lazy="dynamic")
-    mfg_jobs = db.relationship("ManufactureJob", backref=db.backref("item",lazy="dynamic"),lazy="dynamic")
+    mfg_jobs = db.relationship("ManufactureJob", backref=db.backref("item",lazy="dynamic"))
     distributors = db.relationship("Distributor", backref="product", lazy="dynamic")
 
     def __init__(self, name=""):
