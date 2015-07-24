@@ -1,12 +1,12 @@
 from flask import request, session, g, redirect, url_for, abort, render_template, flash
 from flask.ext.login import login_required,login_user,logout_user,current_user
 from flask.ext.wtf import Form
-from dmfg import app
-from dmfg.models import Trade,User,ManufactureJob,Item
-from dmfg.database import db
-from dmfg.auth import OAuthSignIn
+from . import app
+from .models import Trade,User,ManufactureJob,Item
+from .database import db
+from .auth import OAuthSignIn
 from .forms import CreateTradeForm,CreateMfgForm
-from dmfg import tasks
+from . import tasks
 
 @app.route('/')
 @app.route('/index')
