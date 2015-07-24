@@ -49,7 +49,7 @@ def create_trade_page(id):
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.now(),item=form.item.data,user=form.user.data,order_type=form.order_type.data)
 		db.session.add(trade)
 		db.session.commit()
-		flash(u'New trade was successfully submitted!','success')
+		flash('New trade was successfully submitted!','success')
 		return redirect(url_for('trade_page'))
 	flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
