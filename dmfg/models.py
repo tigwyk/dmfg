@@ -92,6 +92,7 @@ class User(db.Model):
     trades = db.relationship("Trade", backref="user")
     mfg_jobs = db.relationship("ManufactureJob", backref="user")
     items_owned = db.Column(JSON)
+    money = db.Column(db.Float)
 
     def __init__(self, name="",email="",items_owned=dict()):
         self.name = name
