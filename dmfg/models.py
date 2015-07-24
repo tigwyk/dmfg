@@ -32,9 +32,9 @@ class Factory(Item):
     
     id = db.Column(db.Integer, db.ForeignKey('item.id'), primary_key=True)
     capacity = db.Column(db.Integer)
-    current_job = db.relationship("ManufactureJob",uselist=False,backref="factory")
+    job_id = db.Column(db.Integer, db.ForeignKey('manufacturejob.id'))
     
-    def __init__(self, capacity=0, current_job):
+    def __init__(self, capacity=0, current_job=None):
         self.capacity = capacity
         self.current_job = current_job
 
@@ -77,7 +77,7 @@ class ManufactureJob(db.Model):
     quantity = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
-    factory_id = db.Column(db.Integer, db.ForeignKey('factory.id'))
+    factory = db.relationship("Factory", uselist=False, backref="current_job")
 
     def __init__(self, name="",quantity=0,user=None,item=None):
         self.name = name
