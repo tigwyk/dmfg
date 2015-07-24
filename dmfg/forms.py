@@ -35,10 +35,17 @@ from .models import Trade
       #self.user = user
       #return True
 
+def item_list():
+    return Item.query.all()
+
+def user_list()
+    return User.query.all()
+
 class CreateTradeForm(Form):
-    model_form(Trade, Form)
-    #qty = IntegerField('Quantity', [validators.Required()] )
-    #body = TextAreaField('Ticket description', [validators.Length(min=10,max=500),validators.Required()] )
+    quantity = IntegerField('Quantity', [validators.Required()] )
+    price = IntegerField('Price', [validators.Required()] )
+    item = QuerySelectField(query_factory=item_list, allow_blank=False)
+    user = QuerySelectField(query_factory=user_list, allow_blank=False)
 
 #class GiftMoneyForm(Form):
     #recipient = TextField('To', [validators.Length(min=4)])
