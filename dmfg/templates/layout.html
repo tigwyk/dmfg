@@ -6,12 +6,12 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
  {% endblock %}
 <body>
-  {% with errors = get_flashed_messages(category_filter=["error"]) %}
-  {% if errors %}
-  <div class="alert-message block-message error">
+{% with successes = get_flashed_messages(category_filter=["success"]) %}
+  {% if successes %}
+  <div class="alert-message block-message success">
     <a class="close" href="#">×</a>
     <ul>
-      {%- for msg in errors %}
+      {%- for msg in successes %}
       <li>{{ msg }}</li>
       {% endfor -%}
     </ul>
