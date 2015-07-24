@@ -62,7 +62,7 @@ def create_mfg_page():
 	form = CreateMfgForm(request.form)
 	form.factory.query = Factory.query.filter_by(owner=current_user)
 	if form.validate_on_submit():
-		mfg = ManufactureJob(quantity=form.quantity.data, item=form.item.data,user=current_user)
+		mfg = ManufactureJob(quantity=form.quantity.data, item=form.item.data,user=current_user, factory=form.factory.data)
 		db.session.add(mfg)
 		db.session.commit()
 		flash(u'New manufacture job was successfully submitted!','success')
