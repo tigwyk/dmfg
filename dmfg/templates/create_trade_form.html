@@ -5,7 +5,7 @@
 </div>
 <div class="container">
     {% from "_formhelpers.html" import render_field %}
-    <form action={{ url_for('create_trade_page') }} method=post class=add-ticket>
+    <form action={{ url_for('create_trade_page') }} method=post class=create-trade>
     {{ form.csrf_token }}
       <dl>
         {{ render_field(form.quantity) }}
