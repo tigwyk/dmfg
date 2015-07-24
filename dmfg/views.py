@@ -1,10 +1,12 @@
 from flask import request, session, g, redirect, url_for, abort, render_template, flash
 from flask.ext.login import login_required,login_user,logout_user,current_user
+from flask.ext.wtf import Form
+from wtforms.ext.sqlalchemy.orm import model_form
 from dmfg import app
 from dmfg.models import Trade,User,ManufactureJob,Item
 from dmfg.database import db
 from dmfg.auth import OAuthSignIn
-from dmfg.forms import CreateTradeForm
+#from dmfg.forms import CreateTradeForm
 import datetime
 
 @app.route('/')
@@ -44,7 +46,8 @@ def trade_page():
 @app.route('/create/trade', methods=['POST', 'GET'])
 @login_required
 def create_trade_page():
-	form = CreateTradeForm(request.form, Trade)
+	TradeForm = model_form(Form, Trade)
+	form = TradeForm(request.form, Trade)
 	if form.validate_on_submit():
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.now(),item=form.item.data,user=form.user.data,order_type=form.order_type.data)
 		db.session.add(trade)
