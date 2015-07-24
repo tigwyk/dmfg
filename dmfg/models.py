@@ -65,8 +65,11 @@ class ManufactureJob(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
 
-    def __init__(self, name=""):
+    def __init__(self, name="",quantity=0,user=None,item=None):
         self.name = name
+        self.quantity = quantity
+        self.user = user
+        self.item = item
         self.created_date = datetime.datetime.now() 
 
     def __repr__(self):

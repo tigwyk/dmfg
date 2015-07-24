@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="well well-small">
+<h2>Create Manufacture Job</h2>
+</div>
+<div class="container">
+    {% from "_formhelpers.html" import render_field %}
+    <form action={{ url_for('create_mfg_page') }} method=post class=create-mfg>
+    {{ form.csrf_token }}
+      <dl>
+        {{ render_field(form.quantity) }}
+        {{ render_field(form.item) }}
+      </dl>
+      <input type=submit value=Submit>
+    </form>
+{% endblock %}

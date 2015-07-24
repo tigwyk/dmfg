@@ -5,7 +5,7 @@ from dmfg import app
 from dmfg.models import Trade,User,ManufactureJob,Item
 from dmfg.database import db
 from dmfg.auth import OAuthSignIn
-from dmfg.forms import CreateTradeForm
+from dmfg.forms import CreateTradeForm,CreateMfgForm
 
 @app.route('/')
 @app.route('/index')
@@ -54,6 +54,18 @@ def create_trade_page():
 	#flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
 	
+@app.route('/create/trade', methods=['POST', 'GET'])
+@login_required
+def create_mfg_page():
+	form = CreateMfgForm(request.form, Trade)
+	if form.validate_on_submit():
+		mfg = ManufactureJob(quantity=form.quantity.data, item=form.item.data,user=current_user)
+		db.session.add(mfg)
+		db.session.commit()
+		flash(u'New manufacture job was successfully submitted!','success')
+		return redirect(url_for('mfg_page'))
+	#flash_errors(form)
+	return render_template('create_mfg_form.html',form=form)
 
 @app.route('/mfg')
 @login_required
