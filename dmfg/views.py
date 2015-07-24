@@ -47,7 +47,7 @@ def trade_page():
 def create_trade_page():
 	form = CreateTradeForm(request.form, Trade)
 	if form.validate_on_submit():
-		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.datetime.now(),item=form.item.data,user=current_user,order_type=form.order_type.data)
+		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.datetime.now(),item_id=form.item.data,user=current_user,order_type=form.order_type.data)
 		db.session.add(trade)
 		db.session.commit()
 		flash(u'New trade was successfully submitted!','success')
