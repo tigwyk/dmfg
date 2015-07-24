@@ -51,7 +51,7 @@ def create_trade_page(id):
 		db.session.commit()
 		flash('New trade was successfully submitted!','success')
 		return redirect(url_for('trade_page'))
-	#flash_errors(form)
+	flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
 	
 
@@ -108,11 +108,11 @@ def oauth_callback(provider):
 	login_user(user, remember=True)
 	return redirect(url_for('index'))
 
-#def flash_errors(form):
-	#for field, errors in form.errors.items():
-		#for error in errors:
-			#flash("Error in the %s field - %s" % (
-			        #getattr(form, field).label.text,
-			        #error
-			        #),"error")
+def flash_errors(form):
+	for field, errors in form.errors.items():
+		for error in errors:
+			flash("Error in the %s field - %s" % (
+			        getattr(form, field).label.text,
+			        error
+			        ),"error")
 
