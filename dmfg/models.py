@@ -41,6 +41,10 @@ class Factory(db.Model):
         self.name = name
         self.capacity = capacity
         self.owner = owner
+        
+    @property
+    def producing(self):
+        return self.current_job.first().item.name
 
     def __repr__(self):
         return '<factory id %r name=%r>' % (self.id, self.name)    
