@@ -44,7 +44,7 @@ def trade_page():
 @app.route('/create/trade', methods=['POST', 'GET'])
 @login_required
 def create_trade_page():
-	form = CreateTradeForm(request.form, Trade)
+	form = CreateTradeForm(request.form)
 	if form.validate_on_submit():
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,item=form.item.data,user=current_user,order_type=form.order_type.data)
 		db.session.add(trade)
@@ -57,7 +57,7 @@ def create_trade_page():
 @app.route('/create/mfg', methods=['POST', 'GET'])
 @login_required
 def create_mfg_page():
-	form = CreateMfgForm(request.form, Trade)
+	form = CreateMfgForm(request.form)
 	if form.validate_on_submit():
 		mfg = ManufactureJob(quantity=form.quantity.data, item=form.item.data,user=current_user)
 		db.session.add(mfg)
