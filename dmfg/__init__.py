@@ -16,5 +16,6 @@ from . import login
 from . import models
 from . import tasks
 from . import auth
+from . import forms
 
 celery = tasks.make_celery(app)

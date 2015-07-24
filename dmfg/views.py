@@ -4,6 +4,7 @@ from dmfg import app
 from dmfg.models import Trade,User,ManufactureJob,Item
 from dmfg.database import db
 from dmfg.auth import OAuthSignIn
+from dmfg.forms import CreateTradeForm
 
 @app.route('/')
 @app.route('/index')
@@ -38,6 +39,21 @@ def trade_page():
 	my_buy = Trade.query.filter_by(user=current_user,order_type="B")
 	my_sell = Trade.query.filter_by(user=current_user,order_type="S")
 	return render_template('trade.html', buy_orders=buy_orders,sell_orders=sell_orders, my_buy=my_buy,my_sell=my_sell)
+
+@app.route('/create/trade/<id>')
+@login_required
+def create_trade_page():
+	form = CreateTradeForm(request.form, Trade.query.get(id))
+	#if form.validate_on_submit():
+		#ticket = Ticket(form.number.data, form.body.data)
+		#db.session.add(ticket)
+		#db.session.commit()
+		#flash(u'New ticket was successfully entered!','success')
+		#submit_event(type='Added Ticket',title='Ticket Added',body=current_user.realname+" added ticket #"+str(ticket.number)+".", user_id=current_user.id)
+		#return redirect(url_for('show_tickets'))
+	#flash_errors(form)
+	return render_template('create_trade_form.html',form=form)
+	
 
 @app.route('/mfg')
 @login_required
