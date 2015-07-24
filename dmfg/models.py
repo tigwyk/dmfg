@@ -12,6 +12,7 @@ class Item(db.Model):
     created_date = db.Column(db.DateTime)
     trades = db.relationship("Trade", backref="item")
     mfg_jobs = db.relationship("ManufactureJob", backref="item")
+    distributors = db.relationship("Distributor", backref="product")
 
     def __init__(self, name=""):
         self.name = name
@@ -45,7 +46,21 @@ class Factory(db.Model):
         return '<factory id %r name=%r>' % (self.id, self.name)    
 
 class Distributor(db.Model):
-    pass
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+    capacity = db.Column(db.Integer)
+    product_id = db.Column(db.Integer, db.ForeignKey('item.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    
+    def __init__(self, name=None, capacity=0, owner=None, product=None):
+        self.name = name
+        self.capacity = capacity
+        self.owner = owner
+        self.product = product
+
+    def __repr__(self):
+        return '<distributor id %r name=%r>' % (self.id, self.name)    
 
 class Trade(db.Model):
 
@@ -114,6 +129,7 @@ class User(db.Model):
     items_owned = db.Column(JSON)
     money = db.Column(db.Float)
     factories = db.relationship("Factory",backref="owner")
+    distributors = db.relationship("Distributor", backref="owner")
 
     def __init__(self, name="",email="",items_owned=dict()):
         self.name = name
