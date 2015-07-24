@@ -38,7 +38,7 @@ from .models import Trade
 def item_list():
     return Item.query.all()
 
-def user_list()
+def user_list():
     return User.query.all()
 
 class CreateTradeForm(Form):
