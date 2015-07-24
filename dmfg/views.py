@@ -84,7 +84,9 @@ def profile_page():
 	items_table = []
 	for item in items_temp.viewkeys():
 		items_table.append([Item.query.get(int(item)),items_temp.get(item),"javascript:void(0);"])
-	return render_template('profile.html', items_table=items_table)
+	my_distributors = Distributor.query.filter_by(owner=current_user)
+	my_factories = Factory.query.filter_by(owner=current_user)
+	return render_template('profile.html', items_table=items_table,my_distributors=my_distributors,my_factories=my_factories)
 
 @app.route('/authorize/<provider>')
 def oauth_authorize(provider):
