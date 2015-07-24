@@ -47,7 +47,6 @@ class CreateTradeForm(Form):
     price = IntegerField('Price', [validators.Required()] )
     order_type = TextField('Order Type', [validators.Required()])
     item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
-    user = QuerySelectField(query_factory=user_list, get_label='name', allow_blank=False)
 
 #class GiftMoneyForm(Form):
     #recipient = TextField('To', [validators.Length(min=4)])
