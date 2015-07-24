@@ -11,12 +11,14 @@
 <h3>All Manufacturing Jobs</h3>
 <th>Item</th>
 <th>Quantity</th>
+<th>Factory</th>
 <th>Creator</th>
 <th>Date Created</th>
 {% for job in all_mfg | sort(reverse=True,attribute='created_date')%}
   <tr>
   <td>{{ job.item.name }}</td>
   <td>{{ job.quantity }}</td>
+  <td>{{ job.factory }}</td>
   <td>{{ job.user.name }}</td>
   <td>{{job.human_date}} <small>({{job.human_time}})</small></td>
   </tr>
@@ -27,11 +29,13 @@
 <h3>My Manufacturing Jobs</h3>
 <th>Item</th>
 <th>Quantity</th>
+<th>Factory</th>
 <th>Date Created</th>
 {% for job in my_mfg | sort(reverse=True,attribute='created_date')%}
   <tr>
   <td>{{ job.item.name }}</td>
   <td>{{ job.quantity }}</td>
+  <td>{{ job.factory }}</td>
   <td>{{job.human_date}} <small>({{job.human_time}})</small></td>
   </tr>
   {% endfor %}
