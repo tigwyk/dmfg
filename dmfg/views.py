@@ -5,6 +5,7 @@ from dmfg.models import Trade,User,ManufactureJob,Item
 from dmfg.database import db
 from dmfg.auth import OAuthSignIn
 from dmfg.forms import CreateTradeForm
+import datetime
 
 @app.route('/')
 @app.route('/index')
@@ -44,14 +45,14 @@ def trade_page():
 @login_required
 def create_trade_page():
 	form = CreateTradeForm(request.form, Trade.query.get(id))
-	#if form.validate_on_submit():
-		#ticket = Ticket(form.number.data, form.body.data)
-		#db.session.add(ticket)
-		#db.session.commit()
-		#flash(u'New ticket was successfully entered!','success')
+	if form.validate_on_submit():
+		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.now(),item=form.item.data,user=form.user.data,order_type=form.order_type.data)
+		db.session.add(trade)
+		db.session.commit()
+		flash(u'New trade was successfully submitted!','success')
 		#submit_event(type='Added Ticket',title='Ticket Added',body=current_user.realname+" added ticket #"+str(ticket.number)+".", user_id=current_user.id)
-		#return redirect(url_for('show_tickets'))
-	#flash_errors(form)
+		return redirect(url_for('trade_page'))
+	flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
 	
 
