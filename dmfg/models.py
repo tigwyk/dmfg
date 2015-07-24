@@ -100,7 +100,7 @@ class ManufactureJob(db.Model):
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
     #factory_id = db.Column(db.Integer, db.ForeignKey('factory.id'))
 
-    def __init__(self, name="",quantity=0,user=None,item=None''',factory=None'''):
+    def __init__(self, name="",quantity=0,user=None,item=None):
         self.name = name
         self.quantity = quantity
         self.user = user
