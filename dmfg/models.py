@@ -28,17 +28,21 @@ class Item(db.Model):
     def human_time(self):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
-class Factory(Item):
+class Factory():
     
-    id = db.Column(db.Integer, db.ForeignKey('item.id'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
     capacity = db.Column(db.Integer)
     current_job = db.relationship("ManufactureJob", backref="factory")
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     
-    def __init__(self, capacity=0, owner=None):
-        super(Factory, self).__init__()
+    def __init__(self, name=None, capacity=0, owner=None):
+        self.name = name
         self.capacity = capacity
         self.owner = owner
+
+    def __repr__(self):
+        return '<factory id %r name=%r>' % (self.id, self.name)    
 
 class Distributor(Item):
     pass
