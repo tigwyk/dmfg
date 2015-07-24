@@ -3,7 +3,9 @@
 ###
 ###
 
-from flask.ext.wtf import Form, BooleanField, TextField, PasswordField, validators, TextAreaField, IntegerField
+from flask.ext.wtf import Form
+from wtforms import TextField, BooleanField, PasswordField, validators, TextAreaField, IntegerField
+from wtforms.validators import Required
 from wtforms.ext.sqlalchemy.orm import model_form
 from .models import Trade
 
