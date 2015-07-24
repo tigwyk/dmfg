@@ -28,7 +28,7 @@ class Item(db.Model):
     def human_time(self):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
-class Factory():
+class Factory(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
@@ -44,7 +44,7 @@ class Factory():
     def __repr__(self):
         return '<factory id %r name=%r>' % (self.id, self.name)    
 
-class Distributor(Item):
+class Distributor(db.Model):
     pass
 
 class Trade(db.Model):
