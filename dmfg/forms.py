@@ -39,9 +39,6 @@ from .models import Trade,User,Item
 def item_list():
     return Item.query.all()
 
-def user_list():
-    return User.query.all()
-
 class CreateTradeForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
     price = IntegerField('Price', [validators.Required()] )
@@ -51,6 +48,7 @@ class CreateTradeForm(Form):
 class CreateMfgForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
     item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
+    factory = QuerySelectField(get_label='name')
 
 #class GiftMoneyForm(Form):
     #recipient = TextField('To', [validators.Length(min=4)])
