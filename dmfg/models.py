@@ -31,7 +31,7 @@ class Item(db.Model):
 
 class Factory(db.Model):
     
-    #id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     capacity = db.Column(db.Integer)
     current_job = db.relationship("ManufactureJob", backref="factory")
