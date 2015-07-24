@@ -49,9 +49,9 @@ def create_trade_page(id):
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.now(),item=form.item.data,user=form.user.data,order_type=form.order_type.data)
 		db.session.add(trade)
 		db.session.commit()
-		flash('New trade was successfully submitted!','success')
+		flash(u'New trade was successfully submitted!','success')
 		return redirect(url_for('trade_page'))
-	flash_errors(form)
+	#flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
 	
 
@@ -111,7 +111,7 @@ def oauth_callback(provider):
 def flash_errors(form):
 	for field, errors in form.errors.items():
 		for error in errors:
-			flash("Error in the %s field - %s" % (
+			flash(u"Error in the %s field - %s" % (
 			        getattr(form, field).label.text,
 			        error
 			        ),"error")
