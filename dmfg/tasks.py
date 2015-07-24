@@ -19,7 +19,8 @@ def process_open_trades(trade=None):
         compatibles = Trade.query.filter_by(order_type='S')
     elif trade.order_type == 'S':
         compatibles = Trade.query.filter_by(order_type='B')
-    else compatibles = Trade.query.all()
+    else:
+        compatibles = Trade.query.all()
     immediates = compatibles.query.filter_by(price=trade.price)
     if immediates:
         if trade.order_type == 'S':
