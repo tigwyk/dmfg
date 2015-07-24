@@ -38,11 +38,13 @@ class Trade(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
 
-    def __init__(self, quantity=0,price=0,order_type=""):
+    def __init__(self, quantity=0,price=0,order_type="", user=None, item=None):
         self.quantity = quantity
         self.price = price
         self.order_type = order_type
-        self.created_date = datetime.datetime.now() 
+        self.created_date = datetime.datetime.now()
+        self.user = user
+        self.item = item
 
     def __repr__(self):
         return '<trade id %r>' % (self.id)
