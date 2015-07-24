@@ -41,10 +41,10 @@ def trade_page():
 	my_sell = Trade.query.filter_by(user=current_user,order_type="S")
 	return render_template('trade.html', buy_orders=buy_orders,sell_orders=sell_orders, my_buy=my_buy,my_sell=my_sell)
 
-@app.route('/create/trade<int:id>', methods=['POST', 'GET'])
+@app.route('/create/trade', methods=['POST', 'GET'])
 @login_required
-def create_trade_page(id):
-	form = CreateTradeForm(request.form, Trade.query.get(id))
+def create_trade_page():
+	form = CreateTradeForm(request.form, Trade)
 	if form.validate_on_submit():
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,created_date=datetime.now(),item=form.item.data,user=form.user.data,order_type=form.order_type.data)
 		db.session.add(trade)
