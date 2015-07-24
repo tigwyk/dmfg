@@ -31,7 +31,7 @@
   <tr>
   <td>{{ factory.name }}</td>
   <td>{{ factory.capacity }}</td>
-  <td>{{ factory.current_job }}</td>
+  <td>Producing {{ factory.current_job.item.name }}</td>
   </tr>
   {% endfor %}
 </table>
@@ -39,12 +39,12 @@
 <table class="table table-striped">
 <th>Name</th>
 <th>Capacity</th>
-<th>Item</th>
+<th>Product</th>
 {% for distributor in my_distributors %}
   <tr>
   <td>{{ distributor.name }} </td>
   <td>{{ distributor.capacity }}</td>
-  <td>{{ distributor.product }}</td>
+  <td>{{ distributor.product.name }}</td>
   </tr>
   {% endfor %}
 </table>
