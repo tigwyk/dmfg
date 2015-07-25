@@ -46,6 +46,9 @@ class CreateTradeForm(Form):
     item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
     user = QuerySelectField(get_label='name')
     
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+    
     def validate(self):
         rv = Form.validate(self)
         if not rv:
