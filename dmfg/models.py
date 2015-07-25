@@ -164,7 +164,7 @@ class User(db.Model):
             return False
     
     def get_item_quantity(self, item_id):
-        return int(self.get_items_owned().get(str(item_id))) or 0
+        return self.get_items_owned().get(str(item_id))
 
     def get_items_owned(self):
         return json.loads(self.items_owned)
