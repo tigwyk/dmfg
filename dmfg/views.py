@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import request, session, g, redirect, url_for, abort, render_template, flash
 from flask.ext.login import login_required,login_user,logout_user,current_user
 from flask.ext.wtf import Form
@@ -54,7 +55,7 @@ def create_trade_page():
 		flash(u'New trade was successfully submitted!','success')
 		tasks.process_open_trades()
 		return redirect(url_for('trade_page'))
-	#flash_errors(form)
+	flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
 	
 @app.route('/create/mfg', methods=['POST', 'GET'])
@@ -68,7 +69,7 @@ def create_mfg_page():
 		db.session.commit()
 		flash(u'New manufacture job was successfully submitted!','success')
 		return redirect(url_for('mfg_page'))
-	#flash_errors(form)
+	flash_errors(form)
 	return render_template('create_mfg_form.html',form=form)
 
 @app.route('/mfg')

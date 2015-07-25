@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import url_for, current_app, redirect, request
 from rauth import OAuth2Service
 

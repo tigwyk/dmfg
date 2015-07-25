@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from dmfg.database import db
 from sqlalchemy.dialects.postgresql import JSON
 import datetime
