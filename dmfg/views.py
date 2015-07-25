@@ -53,7 +53,7 @@ def create_trade_page():
 		db.session.add(trade)
 		db.session.commit()
 		flash(u'New trade was successfully submitted!','success')
-		tasks.process_open_trades()
+		#tasks.process_open_trades(trade)
 		return redirect(url_for('trade_page'))
 	flash_errors(form)
 	return render_template('create_trade_form.html',form=form)
