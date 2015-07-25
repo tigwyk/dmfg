@@ -142,7 +142,7 @@ class User(db.Model):
         self.created_date = datetime.datetime.now()
         self.email = email
         self.items_owned = items_owned
-        self.money = 0
+        self.money = money
 
 
     def __repr__(self):
