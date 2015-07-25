@@ -27,7 +27,7 @@ def process_open_trades(trade=None):
                 sell_qty = trade.quantity
                 new_quantity = sell_qty - buy_qty
                 if new_quantity < 0:
-                    return
+                    break
                 total_price = buy_price * buy_qty
                 buyer.money = buyer.money - total_price
                 trade.user.money = trade.user.money + total_price
@@ -36,13 +36,29 @@ def process_open_trades(trade=None):
                 db.session.delete(immediate_trade)
                 if trade.quantity == 0:
                     db.session.delete(trade)
-            db.commit()
         elif trade.order_type == 'B':
-            pass
+            for immediate_trade in immediates:
+                buyer = trade.user
+                seller = immediate_trade.user
+                sell_qty = immediate_trade.quantity
+                buy_price = trade.price
+                buy_qty = trade.quantity    
+                new_quantity = sell_qty - buy_qty
+                if new_quantity < 0:
+                    break
+                total_price = buy_price * buy_qty
+                buyer.money = buyer.money - total_price
+                seller.money = seller.money + total_price
+                immediate_trade.quantity = new_quantity
+                buyer.add_item(trade.item.id, buy_qty)
+                db.session.delete(trade)
+                if immediate_trade.quantity == 0:
+                    db.session.delete(immediate_trade)            
         else:
             pass
     else:
         pass
+    db.commit()
             
             
             
