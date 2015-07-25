@@ -35,6 +35,16 @@ def process_open_trades(trade=None):
             buyer.money = buyer.money - total_price
             trade.user.money = trade.user.money + total_price
             trade.quantity = new_quantity
+            buyer.add_item(trade.item.id, buy_qty)
+            db.session.delete(immediates.query.all.first())
+            db.commit()
+        elif trade.order_type == 'B':
+            pass
+        else:
+            pass
+    else:
+        pass
+            
             
             
     
