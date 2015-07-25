@@ -34,6 +34,7 @@ def process_open_trades(trade=None):
                 seller.deposit_funds(total_price)
                 trade.quantity = new_quantity
                 buyer.add_item(trade.item.id, buy_qty)
+                seller.remove_item(trade.item.id, buy_qty)
                 db.session.delete(immediate_trade)
                 if trade.quantity == 0:
                     db.session.delete(trade)
@@ -53,6 +54,7 @@ def process_open_trades(trade=None):
                 seller.deposit_funds(total_price)
                 immediate_trade.quantity = new_quantity
                 buyer.add_item(trade.item.id, buy_qty)
+                seller.remove_item(trade.item.id, buy_qty)
                 db.session.delete(trade)
                 if immediate_trade.quantity == 0:
                     db.session.delete(immediate_trade)            
