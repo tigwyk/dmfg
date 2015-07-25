@@ -46,6 +46,7 @@ def trade_page():
 @login_required
 def create_trade_page():
 	form = CreateTradeForm(request.form)
+	form.item.query = Item.query.filter_by(user=current_user)
 	if form.validate_on_submit():
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,item=form.item.data,user=current_user,order_type=form.order_type.data)
 		db.session.add(trade)
