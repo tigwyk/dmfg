@@ -17,12 +17,12 @@ def make_celery(app):
 
 def process_open_trades(trade=None):
     if trade.order_type == 'B':
-        compatibles = Trade.query.filter_by(order_type='S')
+        compatibles = Trade.query.filter_by(order_type='S',price=trade.price)
     elif trade.order_type == 'S':
-        compatibles = Trade.query.filter_by(order_type='B')
+        compatibles = Trade.query.filter_by(order_type='B',price=trade.price)
     else:
         compatibles = Trade.query.all()
-    immediates = compatibles.query.filter_by(price=trade.price)
+    immediates = compatibles
     if immediates:
         if trade.order_type == 'S':
             for immediate_trade in immediates:
