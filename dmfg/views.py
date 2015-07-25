@@ -52,7 +52,7 @@ def create_trade_page():
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,item=form.item.data,user=current_user,order_type=form.order_type.data)
 		db.session.add(trade)
 		db.session.commit()
-		flash(u'New trade was successfully submitted!','success')
+		flash('New trade was successfully submitted!','success')
 		tasks.process_open_trades()
 		return redirect(url_for('trade_page'))
 	flash_errors(form)
@@ -67,7 +67,7 @@ def create_mfg_page():
 		mfg = ManufactureJob(quantity=form.quantity.data, item=form.item.data,user=current_user, factory=form.factory.data)
 		db.session.add(mfg)
 		db.session.commit()
-		flash(u'New manufacture job was successfully submitted!','success')
+		flash('New manufacture job was successfully submitted!','success')
 		return redirect(url_for('mfg_page'))
 	flash_errors(form)
 	return render_template('create_mfg_form.html',form=form)
@@ -130,7 +130,7 @@ def oauth_callback(provider):
 def flash_errors(form):
 	for field, errors in form.errors.items():
 		for error in errors:
-			flash(u"Error in the %s field - %s" % (
+			flash("Error in the %s field - %s" % (
 			        getattr(form, field).label.text,
 			        error
 			        ),"error")
