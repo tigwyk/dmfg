@@ -110,6 +110,7 @@ class ManufactureJob(db.Model):
         self.quantity = quantity
         self.user = user
         self.item = item
+        self.factory = factory
         self.created_date = datetime.datetime.now() 
 
     def __repr__(self):
