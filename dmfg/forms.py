@@ -56,11 +56,13 @@ class CreateTradeForm(Form):
         user = self.user.data
         trade_quantity = self.quantity.data
         item = self.item.data
+        order_type = self.order_type.data
         current_item_quantity = user.get_item_quantity(item.id)
-        if current_item_quantity < trade_quantity:
-            return False
-        else:
-            return True
+        if order_type == "S":
+            if current_item_quantity < trade_quantity:
+                return False
+            else:
+                return True
         
         
 class CreateMfgForm(Form):
