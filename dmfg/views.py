@@ -127,11 +127,11 @@ def oauth_callback(provider):
 	login_user(user, remember=True)
 	return redirect(url_for('index'))
 
-def flash_errors(form):
-	for field, errors in form.errors.items():
-		for error in errors:
-			flash("Error in the %s field - %s" % (
-			        getattr(form, field).label.text,
-			        error
-			        ),"error")
+#def flash_errors(form):
+	#for field, errors in form.errors.items():
+		#for error in errors:
+			#flash("Error in the %s field - %s" % (
+			        #getattr(form, field).label.text,
+			        #error
+			        #),"error")
 
