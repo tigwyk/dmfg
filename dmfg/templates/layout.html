@@ -7,12 +7,12 @@
  {% endblock %}
 <body>
 {% block navbar %}
-{% with errors = get_flashed_messages(category_filter=["error"]) %}
-  {% if errors %}
-  <div class="alert-message block-message error">
+{% with msgs = get_flashed_messages() %}
+  {% if msgs %}
+  <div class="alert-message block-message info">
     <a class="close" href="#">×</a>
     <ul>
-      {%- for msg in errors %}
+      {%- for msg in msgs %}
       <li>{{ msg }}</li>
       {% endfor -%}
     </ul>
