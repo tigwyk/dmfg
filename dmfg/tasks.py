@@ -40,7 +40,7 @@ def process_open_trades(trade=None):
                 trade.quantity = new_quantity
                 buyer.add_item(trade.item.id, buy_qty)
                 db.session.delete(immediate_trade)
-                if trade.quantity = 0:
+                if trade.quantity == 0:
                     db.session.delete(trade)
             db.commit()
         elif trade.order_type == 'B':
