@@ -51,13 +51,14 @@ class CreateTradeForm(Form):
         if not rv:
             return False    
         user = self.user.data
-        quantity = self.quantity.data
+        trade_quantity = self.quantity.data
         item = self.item.data
-        with item_id,item_qty in user.get_owned_item(item.id):
-            if quantity > item_qty:
-                return False
-            else:
-                return True
+        current_item_quantity = user.get_item_quantity(item.id)
+        if current_item_quantity < trade_quantity:
+            return False
+        else:
+            return True
+        
         
 class CreateMfgForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
