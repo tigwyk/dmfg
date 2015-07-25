@@ -60,6 +60,7 @@ class CreateTradeForm(Form):
         current_item_quantity = user.get_item_quantity(item.id)
         if order_type == "S":
             if current_item_quantity < trade_quantity:
+                self.quantity.errors.append('Not enough materials to fulfill trade')
                 return False
             else:
                 return True
