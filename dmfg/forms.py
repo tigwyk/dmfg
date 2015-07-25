@@ -44,7 +44,21 @@ class CreateTradeForm(Form):
     price = IntegerField('Price', [validators.Required()] )
     order_type = TextField('Order Type', [validators.Required()])
     item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
-
+    user = QuerySelectField(get_label='name')
+    
+    def validate(self):
+        rv = Form.validate(self)
+        if not rv:
+            return False    
+        user = self.user.data
+        quantity = self.quantity.data
+        item = self.item.data
+        with item_id,item_qty in user.get_owned_item(item.id):
+            if quantity > item_qty:
+                return False
+            else:
+                return True
+        
 class CreateMfgForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
     item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
