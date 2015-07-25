@@ -6,18 +6,6 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
  {% endblock %}
 <body>
-{% with msgs = get_flashed_messages() %}
-  {% if msgs %}
-  <div class="alert-message block-message info">
-    <a class="close" href="#">×</a>
-    <ul>
-      {%- for msg in msgs %}
-      <li>{{ unicode(msg, errors="replace") }}</li>
-      {% endfor -%}
-    </ul>
-  </div>
-  {% endif %}
-  {% endwith %}
 {% block navbar %}
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
