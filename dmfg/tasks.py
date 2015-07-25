@@ -57,10 +57,10 @@ def process_open_trades(trade=None):
                 if immediate_trade.quantity == 0:
                     db.session.delete(immediate_trade)            
         else:
-            pass
+            pass        
+        db.session.commit()
     else:
         pass
-    db.session.commit()
             
             
             
