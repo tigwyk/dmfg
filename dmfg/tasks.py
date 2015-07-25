@@ -16,13 +16,7 @@ def make_celery(app):
     return celery
 
 def process_open_trades(trade=None):
-    if trade.order_type == 'B':
-        compatibles = Trade.query.filter_by(order_type='S')
-    elif trade.order_type == 'S':
-        compatibles = Trade.query.filter_by(order_type='B')
-    else:
-        compatibles = Trade.query.all()
-    immediates = compatibles.query.filter_by(price=trade.price)
+    immediates = Trade.query.filter_by(order_type=('S' if trade.order_type=='B' else 'B'),price=trade.price)
     if immediates:
         if trade.order_type == 'S':
             for immediate_trade in immediates:
