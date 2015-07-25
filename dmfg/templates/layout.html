@@ -7,6 +7,7 @@
  {% endblock %}
 <body>
 {% block navbar %}
+{% type(get_flashed_messages()) %}
 {% with msgs = get_flashed_messages() %}
   {% if msgs %}
   <div class="alert-message block-message info">
