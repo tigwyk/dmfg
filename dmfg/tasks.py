@@ -60,7 +60,7 @@ def process_open_trades(trade=None):
             pass
     else:
         pass
-    db.commit()
+    db.session.commit()
             
             
             
