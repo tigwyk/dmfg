@@ -6,7 +6,7 @@
 <div class="page-header">
 	<h1>Trade Listings <small>Items listed for trade by players</small></h1>
 </div>
-<div class="container"><p class="text-left"><a class="btn btn-primary btn-lg" role="button" href="{{ url_for('create_trade_page')}}">Create trade</a></p><p class="text-right">Funds: {{ current_user.money }}</p></div>
+<div class="container"><p><a class="btn btn-primary btn-lg" role="button" href="{{ url_for('create_trade_page')}}">Create trade</a></p> <p><h4>Funds: {{ current_user.money }}</h4></p></div>
 <h3>All Trades</h3>
 <div class="well">
 <h4>Buy Orders</h4>
