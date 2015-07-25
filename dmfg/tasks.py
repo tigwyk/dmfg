@@ -29,7 +29,8 @@ def process_open_trades(trade=None):
                 if new_quantity < 0:
                     break
                 total_price = buy_price * buy_qty
-                buyer.withdraw_funds(total_price)
+                if not buyer.withdraw_funds(total_price):
+                    break
                 seller.deposit_funds(total_price)
                 trade.quantity = new_quantity
                 buyer.add_item(trade.item.id, buy_qty)
@@ -47,7 +48,8 @@ def process_open_trades(trade=None):
                 if new_quantity < 0:
                     break
                 total_price = buy_price * buy_qty
-                buyer.withdraw_funds(total_price)
+                if not buyer.withdraw_funds(total_price):
+                    break
                 seller.deposit_funds(total_price)
                 immediate_trade.quantity = new_quantity
                 buyer.add_item(trade.item.id, buy_qty)
