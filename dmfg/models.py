@@ -137,11 +137,12 @@ class User(db.Model):
     factories = db.relationship("Factory",backref="owner")
     distributors = db.relationship("Distributor", backref="owner")
 
-    def __init__(self, name="",email="",items_owned=dict()):
+    def __init__(self, name="",email="",items_owned=dict(),money=0):
         self.name = name
         self.created_date = datetime.datetime.now()
         self.email = email
         self.items_owned = items_owned
+        self.money = 0
 
 
     def __repr__(self):
@@ -158,6 +159,17 @@ class User(db.Model):
 
     def get_id(self):
         return unicode(str(self.id))
+    
+    def withdraw_funds(amount):
+        if amount <= self.money:
+            self.money = self.money - amount
+            return True
+        else:
+            return False
+        
+    def deposit_funds(amount):
+        self.money = self.money + amount
+        return True
     
     def get_owned_item(self, item_id):
         if str(item_id) in self.get_items_owned().viewkeys():
