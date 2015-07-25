@@ -63,7 +63,8 @@ class CreateTradeForm(Form):
                 return False
             else:
                 return True
-        
+        else:
+            return True
         
 class CreateMfgForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
