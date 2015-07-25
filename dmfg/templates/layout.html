@@ -11,8 +11,8 @@
   <div class="alert-message block-message info">
     <a class="close" href="#">×</a>
     <ul>
-      {%- for msg = unicode(msg, errors='replace') in msgs %}
-      <li>{{ msg }}</li>
+      {%- for msg in msgs %}
+      <li>{{ unicode(msg, errors="replace") }}</li>
       {% endfor -%}
     </ul>
   </div>
