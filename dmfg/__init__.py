@@ -18,5 +18,6 @@ from . import models
 from . import tasks
 from . import auth
 from . import forms
+from . import inject_trades
 
 celery = tasks.make_celery(app)
