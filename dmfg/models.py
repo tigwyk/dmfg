@@ -160,14 +160,14 @@ class User(db.Model):
     def get_id(self):
         return unicode(str(self.id))
     
-    def withdraw_funds(amount):
+    def withdraw_funds(self, amount):
         if amount <= self.money:
             self.money = self.money - amount
             return True
         else:
             return False
         
-    def deposit_funds(amount):
+    def deposit_funds(self, amount):
         self.money = self.money + amount
         return True
     
