@@ -43,7 +43,7 @@ def item_list():
 class CreateTradeForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
     price = IntegerField('Price', [validators.Required()] )
-    order_type = RadioField('Order Type', choices=[('B','Buy'),('S','Sell')], [validators.Required()])
+    order_type = RadioField('Order Type', choices=[('B','Buy'),('S','Sell')], validators=[validators.Required()])
     item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
     
     def __init__(self, *args, **kwargs):
