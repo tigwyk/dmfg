@@ -1,5 +1,4 @@
-import dmfg
+from dmfg import inject_trades
 
 def main():
-    dmfg.inject_trades.create_random_trades()
-    return
+    return inject_trades.create_random_trades()
