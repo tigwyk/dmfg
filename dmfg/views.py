@@ -48,6 +48,10 @@ def trade_page():
 def create_trade_page():
 	form = CreateTradeForm(request.form)
 	form.user = current_user
+	form.order_type(class_="form-control")
+	form.item(class_="form-control")
+	form.price(class_="form-control")
+	form.quantity(class_="form-control")
 	if form.validate_on_submit():
 		trade = Trade(quantity=form.quantity.data, price=form.price.data,item=form.item.data,user=current_user,order_type=form.order_type.data)
 		db.session.add(trade)
