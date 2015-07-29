@@ -5,7 +5,7 @@
 ###
 
 from flask.ext.wtf import Form
-from wtforms import TextField, BooleanField, PasswordField, validators, TextAreaField, IntegerField
+from wtforms import TextField, BooleanField, PasswordField, validators, TextAreaField, IntegerField, RadioField
 from wtforms.validators import Required
 from wtforms.ext.sqlalchemy.orm import model_form
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
@@ -43,7 +43,7 @@ def item_list():
 class CreateTradeForm(Form):
     quantity = IntegerField('Quantity', [validators.Required()] )
     price = IntegerField('Price', [validators.Required()] )
-    order_type = TextField('Order Type', [validators.Required()])
+    order_type = RadioField('Order Type', choices=[('B','Buy'),('S','Sell')], [validators.Required()])
     item = QuerySelectField(query_factory=item_list, get_label='name', allow_blank=False)
     
     def __init__(self, *args, **kwargs):
