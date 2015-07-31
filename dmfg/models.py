@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .database import db
 from sqlalchemy.dialects.postgresql import JSON
-from flask.ext.superadmin.model import ModelAdmin
+from flask.ext.superadmin.contrib import sqlamodel
 from flask.ext.login import login_required,login_user,logout_user,current_user
 from flask.ext.superadmin import AdminIndexView
 import datetime
@@ -216,7 +216,7 @@ class User(db.Model):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
 # Create customized model view class
-class MyModelView(ModelAdmin):
+class MyModelView(sqlamodel.ModelView):
     def is_accessible(self):
         return current_user.is_authenticated()
 
