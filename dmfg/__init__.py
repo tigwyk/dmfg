@@ -22,7 +22,7 @@ from .database import db
 
 admin = Admin(app,index_view=models.MyAdminIndexView())
 
-admin.register(models.User, session=db.session)
+#admin.register(models.User, session=db.session)
 admin.register(models.Item, session=db.session)
 admin.register(models.Trade, session=db.session)
 admin.register(models.Factory, session=db.session)

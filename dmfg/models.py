@@ -3,6 +3,7 @@ from .database import db
 from sqlalchemy.dialects.postgresql import JSON
 from flask.ext.superadmin.contrib import sqlamodel
 from flask.ext.login import login_required,login_user,logout_user,current_user
+import flask.ext.superadmin
 import datetime
 import humanize
 import json
