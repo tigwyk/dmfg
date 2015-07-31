@@ -110,7 +110,7 @@ def process_open_trades(trade=None):
                     db.session.delete(trade)
                     if immediate_trade.quantity == 0:
                         db.session.delete(immediate_trade)            
-            
+    db.session.commit()        
             
             
     
