@@ -87,27 +87,27 @@ def process_open_trades(trade=None):
                 db.session.delete(immediate_trade)
                 if trade.quantity == 0:
                     db.session.delete(trade)
-            elif trade.order_type == 'B':
-                for immediate_trade in the_rest:
-                    buyer = trade.user
-                    seller = immediate_trade.user
-                    sell_qty = immediate_trade.quantity
-                    buy_price = trade.price
-                    sell_price = immediate_trade.price
-                    buy_qty = trade.quantity    
-                    new_quantity = sell_qty - buy_qty
-                    if new_quantity < 0:
-                        break
-                    total_price = buy_price * buy_qty
-                    if buy_price < sell_price:
-                        break
-                    if not buyer.withdraw_funds(total_price):
-                        break
-                    seller.deposit_funds(total_price)
-                    immediate_trade.quantity = new_quantity
-                    buyer.add_item(trade.item.id, buy_qty)
-                    seller.remove_item(trade.item.id, buy_qty)
-                    db.session.delete(trade)
-                    if immediate_trade.quantity == 0:
-                        db.session.delete(immediate_trade)            
+        elif trade.order_type == 'B':
+            for immediate_trade in the_rest:
+                buyer = trade.user
+                seller = immediate_trade.user
+                sell_qty = immediate_trade.quantity
+                buy_price = trade.price
+                sell_price = immediate_trade.price
+                buy_qty = trade.quantity    
+                new_quantity = sell_qty - buy_qty
+                if new_quantity < 0:
+                    break
+                total_price = buy_price * buy_qty
+                if buy_price < sell_price:
+                    break
+                if not buyer.withdraw_funds(total_price):
+                    break
+                seller.deposit_funds(total_price)
+                immediate_trade.quantity = new_quantity
+                buyer.add_item(trade.item.id, buy_qty)
+                seller.remove_item(trade.item.id, buy_qty)
+                db.session.delete(trade)
+                if immediate_trade.quantity == 0:
+                    db.session.delete(immediate_trade)            
     db.session.commit()

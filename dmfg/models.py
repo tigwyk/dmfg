@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from dmfg.database import db
 from sqlalchemy.dialects.postgresql import JSON
+from flask_admin.contrib.sqla import ModelView
+from flask.ext.login import login_required,login_user,logout_user,current_user
 import datetime
 import humanize
 import json
@@ -213,9 +215,20 @@ class User(db.Model):
     def human_time(self):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
+class UserView(sqla.ModelView):
+
+    def is_accessible(self):
+        return login.current_user.is_authenticated()
+
+    def _handle_view(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        if not self.is_accessible():
+            return redirect(url_for('login', next=request.url))
+
 admin.register(User, session=db.session)
 admin.register(Item, session=db.session)
 admin.register(Trade, session=db.session)
 admin.register(Factory, session=db.session)
 admin.register(Distributor, session=db.session)
 admin.register(ManufactureJob, session=db.session)
+admin.add_view(UserView(User, db.session))
