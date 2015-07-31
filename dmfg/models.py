@@ -3,7 +3,7 @@ from .database import db
 from sqlalchemy.dialects.postgresql import JSON
 from flask.ext.superadmin.contrib import sqlamodel
 from flask.ext.login import login_required,login_user,logout_user,current_user
-import flask.ext.superadmin
+from flask.ext.superadmin import AdminIndexView
 import datetime
 import humanize
 import json
@@ -222,6 +222,6 @@ class MyModelView(sqlamodel.ModelView):
 
 
 # Create customized index view class
-class MyAdminIndexView(superadmin.AdminIndexView):
+class MyAdminIndexView(AdminIndexView):
     def is_accessible(self):
         return login.current_user.is_authenticated()
