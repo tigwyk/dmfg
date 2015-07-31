@@ -28,6 +28,6 @@ admin.register(models.Trade, session=db.session)
 admin.register(models.Factory, session=db.session)
 admin.register(models.Distributor, session=db.session)
 admin.register(models.ManufactureJob, session=db.session)
-admin.add_view(MyModelView(models.User, db.session))
+admin.add_view(models.MyModelView(models.User, db.session))
 
 celery = tasks.make_celery(app)
