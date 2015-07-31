@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-from dmfg.database import db
+from .database import db
 from sqlalchemy.dialects.postgresql import JSON
 from flask.ext.superadmin.contrib import sqlamodel
 from flask.ext.login import login_required,login_user,logout_user,current_user
 import datetime
 import humanize
 import json
-from . import admin
 
 class Item(db.Model):
 
@@ -225,11 +224,3 @@ class MyModelView(sqlamodel.ModelView):
 class MyAdminIndexView(superadmin.AdminIndexView):
     def is_accessible(self):
         return login.current_user.is_authenticated()
-
-admin.register(User, session=db.session)
-admin.register(Item, session=db.session)
-admin.register(Trade, session=db.session)
-admin.register(Factory, session=db.session)
-admin.register(Distributor, session=db.session)
-admin.register(ManufactureJob, session=db.session)
-admin.add_view(MyModelView(User, db.session))
