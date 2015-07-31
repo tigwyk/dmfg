@@ -216,7 +216,7 @@ class User(db.Model):
         return humanize.naturaltime(datetime.datetime.now()-self.created_date)
 
 # Create customized model view class
-class MyModelView(ModelAdmin.ModelView):
+class MyModelView(ModelAdmin):
     def is_accessible(self):
         return login.current_user.is_authenticated()
 
